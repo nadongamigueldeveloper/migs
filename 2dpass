@@ -12,7 +12,7 @@ public class Main {
 		if (check()==false) {
 		ctr++;
 		}
-		if(ctr > 0){
+		if(ctr > 0 && check() == false){
 		    System.out.println("Your password needs atleast one uppercase, lowercase, number, and symbol.");
 		}
 	} while(check() == false);
