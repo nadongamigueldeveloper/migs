@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main {
+    public static Scanner sc = new Scanner(System.in);
+    public static String pass;
+    public static int ctr = 0;
+
+	public static void main(String[] args) {
+	
+	do{
+	  	System.out.print("Enter a password: ");
+		pass = sc.nextLine();
+		if (check()==false) {
+		ctr++;
+		}
+		if(ctr > 0){
+		    System.out.println("Your password needs atleast one uppercase, lowercase, number, and symbol.");
+		}
+	} while(check() == false);
+		    System.out.print("Your password is valid");
+		
+	}
+	public static boolean check(){
+	    boolean uppercase = false;
+	    boolean lowercase = false;
+	    boolean number = false;
+	    boolean symbol = false;
+	   
+	    for(int x = 0;x < pass.length();x++){
+	        char character = pass.charAt(x);
+	        if(Character.isUpperCase(character))
+	            uppercase = true;
+	        else if(Character.isLowerCase(character))
+	            lowercase = true;
+	        else if(character >= 48 && character <= 57 )
+	            number = true;
+	        else 
+	            symbol = true;
+	            
+	  
+	    }
+	    return uppercase && lowercase && number && symbol;
+	}
+	
+}
