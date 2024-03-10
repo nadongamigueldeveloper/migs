@@ -1,0 +1,146 @@
+package lucky7;
+import java.util.Random;
+import java.util.Scanner;
+public class lucky7 {
+	public static String [][]nums = new String[2][3];
+	public static String [][]letters = {{"A","B","C"},{"D","E","F"}};
+	public static String [][]letter = {{"A","B","C"},{"D","E","F"}};
+	public static String choice1;
+	public static String choice2;
+	public static int row,column,rowX,columnX;
+	public static int sum = 0;
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Lucky 7 where your luck tests you!!!");
+		System.out.println();
+		
+		String z;
+		
+		do {
+		 print_table();
+		 random();
+		 System.out.println();
+		 Ask_User();
+		 total();
+		 System.out.println();
+		 
+		 System.out.print("Play again?[Y/N]:");
+		 z = sc.nextLine();
+		 
+		 if(z.equals("Y")) {
+			 reset();
+		 }
+		} while(z.equals("Y"));
+		
+		
+		
+	}
+	
+	public static void print_table() {
+	 
+		for(int i = 0;i < letters.length;i++) {
+				for(int j = 0;j < letters[0].length;j++) {
+					
+					System.out.print("|" + letters[i][j] + "|");
+				}
+					System.out.println();	
+			}
+		
+	}
+	public static void Ask_User() {
+		
+		System.out.print("Enter a letter: ");
+		choice1 = sc.nextLine();
+		if(choice1.equals("A")) {
+			row = 0;
+			column = 0;
+		}else if(choice1.equals("B")) {
+			row = 0;
+			column = 1;
+		}else if(choice1.equals("C")) {
+			row = 0;
+			column = 2;
+		}else if(choice1.equals("D")) {
+			row = 1;
+			column = 0;
+		}else if(choice1.equals("E")) {
+			row = 1;
+			column = 1;
+		}else if(choice1.equals("F")) {
+			row = 1;
+			column = 2;
+		}
+		Update_table(row,column);
+		System.out.println();
+		print_table();
+		System.out.println();
+		
+		System.out.print("Enter a letter: ");
+		choice2 = sc.nextLine();
+		if(choice2.equals("A")) {
+			rowX = 0;
+			columnX = 0;
+		}else if(choice2.equals("B")) {
+			rowX = 0;
+			columnX = 1;
+		}else if(choice2.equals("C")) {
+			rowX = 0;
+			columnX = 2;
+		}else if(choice2.equals("D")) {
+			rowX = 1;
+			columnX = 0;
+		}else if(choice2.equals("E")) {
+			rowX = 1;
+			columnX = 1;
+		}else if(choice2.equals("F")) {
+			rowX = 1;
+			columnX = 2;
+		}
+		Update_table(rowX,columnX);
+		System.out.println();
+		print_table();
+		System.out.println();
+		
+
+	}
+	
+	public static void Update_table(int row,int column) {
+		
+			 letters[row][column] = nums[row][column];
+			 
+	}
+	
+	public static void total() {
+		int num = Integer.parseInt(nums[row][column]);
+		int num1 = Integer.parseInt(nums[rowX][columnX]);
+		sum = num + num1;
+		if(sum == 7 ) {
+		 	System.out.println("Player wins!!!");
+		 	
+		 } else {
+		 	System.out.println("Player loses!!!");
+		 	
+		 }
+		
+	}
+	public static void reset() {
+		for(int i = 0;i < letter.length;i++) {
+			for(int j = 0;j < letter[0].length;j++) {
+				letters[i][j] = letter[i][j];
+			}
+		}
+	}
+	public static void random() {
+		Random rand = new Random();
+		for(int i = 0;i < nums.length;i++) {
+			for(int j = 0;j < nums[0].length;j++) {
+			    int rd = rand.nextInt(5);
+			    
+			    String x = Integer.toString(rd);
+			    nums[i][j] = x;
+			}
+		}
+	}
+
+}
