@@ -1,0 +1,109 @@
+package memorygame2d;
+import java.util.Scanner;
+public class memorygame {
+
+	public static String[][]nums = {{"1","2","3"},{"4","5","6"}};
+	public static String[][] letters = {{"A","B","B"},{"C","A","C"}};
+	public static int score = 0;
+	public static String choice1;
+	public static String choice2;
+	public static Scanner sc = new Scanner(System.in);
+	public static int row, column, rowX, columnX;
+	
+	public static void main(String[]args) {
+		print_table();
+		while(score != 3) {
+			System.out.println(); 
+			Ask_User();
+			 similar();
+		}
+		System.out.print("You win!!!");
+		
+		
+	
+	}
+	public static void print_table(){
+		for(int i = 0;i < nums.length;i++) {
+			for(int j = 0;j < nums[0].length;j++) {
+				System.out.print(nums[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void Ask_User() {
+		System.out.print("Enter a number: ");
+		choice1 = sc.nextLine();
+		if(choice1.equals("1")) {
+			row = 0;
+			column = 0;
+		}else if(choice1.equals("2")) {
+			row = 0;
+			column = 1;
+		}else if(choice1.equals("3")) {
+			row = 0;
+			column = 2;
+		}else if(choice1.equals("4")) {
+			row = 1;
+			column = 0;
+		}else if(choice1.equals("5")) {
+			row = 1;
+			column = 1;
+		}else if(choice1.equals("6")) {
+			row = 1;
+			column = 2;
+		}
+		updateTable(row,column);
+		print_table();
+		System.out.println();
+		
+		System.out.print("Enter a number: ");
+		choice2 = sc.nextLine();
+		if(choice2.equals("1")) {
+			rowX = 0;
+			columnX = 0;
+		}else if(choice2.equals("2")) {
+			rowX = 0;
+			columnX = 1;
+		}else if(choice2.equals("3")) {
+			rowX = 0;
+			columnX = 2;
+		}else if(choice2.equals("4")) {
+			rowX = 1;
+			columnX = 0;
+		}else if(choice2.equals("5")) {
+			rowX = 1;
+			columnX = 1;
+		}else if(choice2.equals("6")) {
+			rowX = 1;
+			columnX = 2;
+		}
+		updateTable(rowX,columnX);
+		print_table();
+		System.out.println();
+
+	}
+	
+	public static void updateTable(int row,int column){
+		
+		 nums[row][column] = letters[row][column];
+	}
+	
+	public static void similar() {
+		if(nums[row][column].equals(nums[rowX][columnX])) {
+			score++;
+			System.out.println("Your score is " + score);
+		}else if(!nums[row][column].equals(nums[rowX][columnX])) {
+			nums[row][column] = choice1;
+			nums[rowX][columnX] = choice2;
+			System.out.println();
+			print_table();
+			System.out.println();
+			System.out.println("Not matched ");
+		}
+	}
+	
+
+	
+
+}
