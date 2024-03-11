@@ -1,0 +1,32 @@
+public class headfirst1 {
+    public static void main(String[] args) {
+        // populate arrays
+        String[] wordListOne = { "agnostic", "opinionated",
+                "voice activated", "haptically driven", "extensible",
+                "reactive", "agent based", "functional", "AI enabled",
+                "strongly typed" };
+
+        String[] wordListTwo = { "loosely coupled", "six sigma",
+                "asynchronous", "event driven", "pub-sub", "IoT", "cloud native", "service oriented",
+                "containerized", "serverless", "microservices", "distributed ledger" };
+
+        String[] wordListThree = { "framework", "library",
+                "DSL", "REST API", "repository", "pipeline", "service mesh", "architecture", "perspective", "design",
+                "orientation" };
+
+        // find out the array length
+        int oneLength = wordListOne.length;
+        int twoLength = wordListTwo.length;
+        int threeLength = wordListThree.length;
+
+        // generate three random numbers
+        java.util.Random randomGenerator = new java.util.Random();
+        int Rad1 = randomGenerator.nextInt(oneLength);
+        int Rad2 = randomGenerator.nextInt(twoLength);
+        int Rad3 = randomGenerator.nextInt(threeLength);
+
+        String phrase = wordListOne[Rad1] + " " + wordListTwo[Rad2] + " " + wordListThree[Rad3];
+
+        System.out.println("What we need is a " + phrase);
+    }
+}
