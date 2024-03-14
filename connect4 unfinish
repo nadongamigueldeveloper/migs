@@ -10,7 +10,7 @@ public class Main
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		while (ctr < 42 || x != 1){
+		while (ctr < 42 && x != 1){
 		    print_table();
 	    	Ask_User();
 		   System.out.println(ctr);
@@ -435,7 +435,7 @@ public class Main
 		
 	public static int pattern() {
 		if(player == 2) {
-			if(move.equals("O")) {
+			
 				if(num[5][0].equals("X") && num[5][1].equals("X") && num[5][2].equals("X") && num[5][3].equals("X") ) {
 					return 1;
 				}if(num[5][0].equals("X") && num[4][1].equals("X") && num[3][2].equals("X") && num[2][3].equals("X") ) {
@@ -580,9 +580,9 @@ public class Main
 					return 1;
 				}
 					return 0;
-			}
+			
 		}else if(player == 1){
-		    if(move.equals("X")){
+		    
 		        if(num[5][0].equals("O") && num[5][1].equals("O") && num[5][2].equals("O") && num[5][3].equals("O") ) {
 					return 1;
 				}if(num[5][0].equals("O") && num[4][1].equals("O") && num[3][2].equals("O") && num[2][3].equals("O") ) {
@@ -727,7 +727,7 @@ public class Main
 					return 1;
 				}
 					return 0;
-		    }
+		    
 		}
 		return 0;
 	}
