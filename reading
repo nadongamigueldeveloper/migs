@@ -7,8 +7,22 @@ public class Main{
 	public static void Ask_User(){
 	    System.out.print("Enter a paragraph: ");
 	    char []choice = sc.nextLine().toCharArray();
-	    int z = letters(choice);
-	    System.out.print(z);
+	    int z = letters(choice);  // letters
+	    System.out.println(z);
+	    int y = sentence(choice); // sentence
+	    System.out.println(y);
+	    int x = words(choice); // words
+	    System.out.println(x);
+	    
+	    double aveL = z / x * 100;
+	    double aveS = y / x * 100;
+	    
+	    double index = 0.0588 * aveL - 0.296 * aveS - 15.8;
+	    
+	    
+	    System.out.println("Grade " + Math.round(index));
+	    
+	    
 	}
 
 	public static int letters(char []c){
@@ -21,11 +35,26 @@ public class Main{
 	   }
 	   return ctr;
 	}
-	public static int words(){
-	    return 1;
+	public static int words(char [] ch){
+	    int ctr = 0;
+	    
+	    for(int i = 0;i < ch.length;i++){
+	        if(ch[i] == 32){
+	            ctr++;
+	            
+	        }
+	    }
+	    return ctr + 1;
 	}
-	public static int sentence(){
-	    return 1;
+	public static int sentence(char []C){
+	   int ctr = 0;
+	   for(int i = 0;i < C.length;i++){
+	       if((C[i] == 46 || C[i] == 33 || C[i] == 63 )){
+	           ctr++;
+	       }
+	   }
+	   return ctr;
 	}
+	
 
 }
