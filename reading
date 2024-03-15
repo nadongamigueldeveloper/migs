@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Main{
+    public static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+	   Ask_User();
+	}
+	public static void Ask_User(){
+	    System.out.print("Enter a paragraph: ");
+	    char []choice = sc.nextLine().toCharArray();
+	    int z = letters(choice);
+	    System.out.print(z);
+	}
+
+	public static int letters(char []c){
+	   int ctr = 0;
+	   for(int i = 0;i < c.length;i++){
+	       if((c[i] >= 65 && c[i] <= 91) || (c[i] >= 97 && c[i] <= 122)){
+	             ctr++;
+	       }
+	      
+	   }
+	   return ctr;
+	}
+	public static int words(){
+	    return 1;
+	}
+	public static int sentence(){
+	    return 1;
+	}
+
+}
