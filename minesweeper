@@ -1,17 +1,32 @@
+package minesweeper;
 import java.util.Scanner;
-public class Main{
-    
-    public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
+import java.util.Random;
+public class minesweeper {
+	public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
     public static String [][] tablebomb = {{"_","_","_","_","_"},{"_","_","_","0","_"},{"_","0","_","_","_"},{"0","0","0","_","_"},{"_","_","_","_","0"}};
     public static int ctr = 0;
     public static String choice;
-    public static int row,column;
+    public static int blg = 0;
+    public static boolean lose = false;
     public static Scanner sc = new Scanner(System.in);
     
 	public static void main(String[] args) {
-		check_bomb();
-		System.out.println();
 		print_table();
+	    while(lose == false && blg < 19) {
+	    	check_bomb();
+		    Ask_User();
+		    print_table();
+		    blg++;
+	    }
+	    if(lose == false && blg < 19) {
+	    	System.out.println("YOU WIN!!!");
+	    }else if(lose = true) {
+	    	System.out.println();
+	    	printbomb();
+	    	System.out.println("YOU LOSE!!!");
+	    }
+			
+
 		
 		
 		
@@ -50,15 +65,34 @@ public class Main{
 	    }
 	}
 	public static void Ask_User(){
-	    int blg = 0;
 	        System.out.print("Enter a letter: ");
 	        choice = sc.nextLine();
-	        for(row = 0;row < tablebomb.length;row++ ){
-	            for(){
-	                
-	            }
+	        for(int i = 0, num = 65;i < tablebomb.length;i++) {
+	        	for(int j = 0;j < tablebomb[0].length;j++,num++) {
+	        		char character = choice.charAt(0);
+	        		if(num == character) {
+	        			table[i][j] = tablebomb[i][j];
+	        			if(tablebomb[i][j].equals("0")) {
+		    	        	
+		    	        	lose = true;
+		    	        }
+		    	        		
+	        		}
+	        		
+	        	}
 	        }
-				
-
 	}
+	public static void printbomb() {
+		for(int i = 0;i < tablebomb.length;i++) {
+			for(int j = 0;j < tablebomb[0].length;j++) {
+				if(tablebomb[i][j].equals("0")) {
+					table[i][j] = tablebomb[i][j];
+				}
+				System.out.print(" " + table[i][j] + " ");
+			}   
+				System.out.println();
+		}
+	}
+	
+	
 }
