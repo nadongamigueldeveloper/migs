@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 public class Main{
     public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
+    public static String [][] table2 = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
     public static String [][] tablebomb = {{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"}};
     public static int ctr = 0;
     public static String choice;
@@ -32,10 +33,13 @@ public class Main{
 	    	printbomb();
 	    	System.out.println("YOU LOSE!!!");
 	    }
-			if(lose = true){
-			    System.out.println("Play Again[Y/N}: ");
-			    z = sc.nextLine();
-			}
+		
+		System.out.println("Play Again[Y/N}: ");
+	    z = sc.nextLine();
+		 
+		 if(z.equals("Y")){
+		   newtable();
+        }
 	  } while(z.equals("Y"));
 
 		
@@ -114,6 +118,13 @@ public class Main{
 	    } while(tablebomb[rowR][columnR].equals("0"));
 	        tablebomb[rowR][columnR] = "0";
 	 }
+	}
+	public static void newtable(){
+	    for(int i = 0;i < table.length;i++){
+	        for(int j = 0;j < table.length;j++){
+	            table[i][j] = table2[i][j];
+	        }
+	    }
 	}
 
 }
