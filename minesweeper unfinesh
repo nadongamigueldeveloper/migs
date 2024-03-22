@@ -1,0 +1,115 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main{
+    public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
+    public static String [][] tablebomb = {{"0","_","_","0","_"},{"_","_","_","0","_"},{"_","0","_","_","_"},{"0","0","0","_","_"},{"_","_","_","_","0"}};
+    public static int ctr = 0;
+    public static String choice;
+    public static int blg = 0,rowR,columnR;
+    public static boolean lose = false;
+    public static Scanner sc = new Scanner(System.in);
+    public static Random rd = new Random();
+    
+	public static void main(String[] args) {
+	    shuffle();
+	    bomb();
+		print_table();
+	    while(lose == false && blg < 17) {
+	    	check_bomb();
+		    Ask_User();
+		    print_table();
+		    blg++;
+	    }
+	    if(lose == false && blg < 17) {
+	    	System.out.println("YOU WIN!!!");
+	    }else if(lose = true) {
+	    	System.out.println();
+	    	printbomb();
+	    	System.out.println("YOU LOSE!!!");
+	    }
+			
+
+		
+		
+		
+	}
+	public static void print_table(){
+	    for(int i = 0;i < table.length;i++){
+	        for(int j = 0;j < table[0].length;j++){
+	            System.out.print(" " + table[i][j] + " ");
+	        }
+	        System.out.println();
+	    }
+	}
+	public static void check_bomb(){
+	  
+	    for(int i = 0;i < tablebomb.length;i++){
+	        for(int j = 0;j < tablebomb[0].length;j++){
+	            if(tablebomb[i][j].equals("_")){
+	                for(int x = i - 1;x <= i + 1; x++){
+	                    for(int y = j - 1;y <= j + 1;y++){
+	                        if((x >=0 && x <= tablebomb.length - 1) && (y >= 0 && y <= tablebomb.length - 1)) {
+	                            if(tablebomb[x][y].equals("0")){
+	                            ctr++;
+	                        }
+	                        }
+	                       
+	                    }
+	                }
+	               
+	            }
+	            if(ctr != 0){
+	                tablebomb[i][j] =  Integer.toString(ctr);
+	                ctr = 0;
+	            }
+	        }
+	         
+	    }
+	}
+	public static void Ask_User(){
+	        System.out.print("Enter a letter: ");
+	        choice = sc.nextLine();
+	        for(int i = 0, num = 65;i < tablebomb.length;i++) {
+	        	for(int j = 0;j < tablebomb[0].length;j++,num++) {
+	        		char character = choice.charAt(0);
+	        		if(num == character) {
+	        			table[i][j] = tablebomb[i][j];
+	        			if(tablebomb[i][j].equals("0")) {
+		    	        	
+		    	        	lose = true;
+		    	        }
+		    	        		
+	        		}
+	        		
+	        	}
+	        }
+	}
+	public static void printbomb() {
+		for(int i = 0;i < tablebomb.length;i++) {
+			for(int j = 0;j < tablebomb[0].length;j++) {
+				if(tablebomb[i][j].equals("0")) {
+					table[i][j] = tablebomb[i][j];
+				}
+				System.out.print(" " + table[i][j] + " ");
+			}   
+				System.out.println();
+		}
+	}
+	public static void shuffle(){
+	    for(int i = 0;i < tablebomb.length;i++){
+	       rowR = rd.nextInt(4);
+	    }
+	    
+	    for(int j = 0;j < tablebomb.length;j++){
+	        columnR = rd.nextInt(4);
+	    }
+	}
+	public static void bomb(){
+	    int i = rowR;
+	    int j = columnR;
+	    if(table[i][j].equals("0")){
+	           shuffle();
+	    }
+	    table[i][j].equals("0");
+	}
+}
