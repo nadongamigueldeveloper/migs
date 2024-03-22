@@ -4,6 +4,7 @@ public class Main{
     public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
     public static String [][] table2 = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
     public static String [][] tablebomb = {{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"}};
+     public static String [][] tablebomb2 = {{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"}};
     public static int ctr = 0;
     public static String choice;
     public static int blg = 0,rowR,columnR;
@@ -123,6 +124,7 @@ public class Main{
 	    for(int i = 0;i < table.length;i++){
 	        for(int j = 0;j < table.length;j++){
 	            table[i][j] = table2[i][j];
+	            tablebomb[i][j] = tablebomb2[i][j];
 	        }
 	    }
 	}
