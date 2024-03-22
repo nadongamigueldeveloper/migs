@@ -65,7 +65,7 @@ public class Main{
 	                        if((x >=0 && x <= tablebomb.length - 1) && (y >= 0 && y <= tablebomb.length - 1)) {
 	                            if(tablebomb[x][y].equals("0")){
 	                            ctr++;
-	                        }
+	                            }
 	                        }
 	                       
 	                    }
