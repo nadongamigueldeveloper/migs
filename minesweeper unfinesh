@@ -7,10 +7,16 @@ public class Main{
     public static String choice;
     public static int blg = 0,rowR,columnR;
     public static boolean lose = false;
+    public static String z;
     public static Scanner sc = new Scanner(System.in);
     public static Random rd = new Random();
     
 	public static void main(String[] args) {
+	  
+	  do{
+	   
+	    System.out.println(">>>>>>>>>WELCOME TO MINESWEEPER!!!<<<<<<<<<");
+	    
 	    shuffle();
 	    check_bomb();
 		print_table();
@@ -26,7 +32,11 @@ public class Main{
 	    	printbomb();
 	    	System.out.println("YOU LOSE!!!");
 	    }
-			
+			if(lose = true){
+			    System.out.println("Play Again[Y/N}: ");
+			    z = sc.nextLine();
+			}
+	  } while(z.equals("Y"));
 
 		
 		
@@ -96,11 +106,11 @@ public class Main{
 	}
 	public static void shuffle(){
 	 for(int x = 0;x < 6;x++){
-	        do{
-	        for(int i = 0;i < tablebomb.length;i++){
+	    do{
+	       
 	            rowR = rd.nextInt(4);
 	            columnR = rd.nextInt(4);
-	        } 
+	         
 	    } while(tablebomb[rowR][columnR].equals("0"));
 	        tablebomb[rowR][columnR] = "0";
 	 }
