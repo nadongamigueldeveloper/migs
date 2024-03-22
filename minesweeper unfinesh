@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 public class Main{
     public static String [][] table = {{"A","B","C","D","E"},{"F","G","H","I","J"},{"K","L","M","N","O"},{"P","Q","R","S","T"},{"U","V","W","X","Y"}};
-    public static String [][] tablebomb = {{"0","_","_","0","_"},{"_","_","_","0","_"},{"_","0","_","_","_"},{"0","0","0","_","_"},{"_","_","_","_","0"}};
+    public static String [][] tablebomb = {{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"},{"_","_","_","_","_"}};
     public static int ctr = 0;
     public static String choice;
     public static int blg = 0,rowR,columnR;
@@ -12,15 +12,14 @@ public class Main{
     
 	public static void main(String[] args) {
 	    shuffle();
-	    bomb();
+	    check_bomb();
 		print_table();
-	    while(lose == false && blg < 17) {
-	    	check_bomb();
+	    while(lose == false && blg < 20) {
 		    Ask_User();
 		    print_table();
 		    blg++;
 	    }
-	    if(lose == false && blg < 17) {
+	    if(lose == false && blg == 20) {
 	    	System.out.println("YOU WIN!!!");
 	    }else if(lose = true) {
 	    	System.out.println();
@@ -96,20 +95,16 @@ public class Main{
 		}
 	}
 	public static void shuffle(){
-	    for(int i = 0;i < tablebomb.length;i++){
-	       rowR = rd.nextInt(4);
-	    }
-	    
-	    for(int j = 0;j < tablebomb.length;j++){
-	        columnR = rd.nextInt(4);
-	    }
+	 for(int x = 0;x < table.length;x++){
+	        do{
+	        for(int i = 0;i < tablebomb.length;i++){
+	            rowR = rd.nextInt(4);
+	            columnR = rd.nextInt(4);
+	        } 
+	    } while(tablebomb[rowR][columnR].equals("0"));
+	        tablebomb[rowR][columnR] = "0";
+	 }
 	}
-	public static void bomb(){
-	    int i = rowR;
-	    int j = columnR;
-	    if(table[i][j].equals("0")){
-	           shuffle();
-	    }
-	    table[i][j].equals("0");
-	}
+
 }
+
