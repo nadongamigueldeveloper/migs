@@ -1,33 +1,50 @@
+package wordle;
 import java.util.Scanner;
 import java.util.Random;
+public class wordle {
+	public static String words[] = {"angel","mouth","mouse","smell","crack"};
+	public static String correctword;
+	public static String choice;
+	public static String X[] = {"X","X","X","X","X"};
+	public static boolean checkpili[] = {false,false,false,false,false};
+	public static boolean checknames[] = {false,false,false,false,false};
+	public static Scanner sc = new Scanner(System.in);
+	public static Random rd = new Random();
 
-public class Main{
-    public static String words[] = {"angel", "mary", "jeziery", " atom"," lala"};
-    public static char c[] = 
-    public static String correctword;
-    public static String choice;
-    public static Scanner sc = new Scanner(System.in);
-    public static Random rd = new Random();
-    
 	public static void main(String[] args) {
-	  
-	  correctword = words[0];
-	  Ask_User();
+		
+		correctword = words[0];
+		Ask_User();
 
 	}
 	public static void Ask_User(){
-	    char names[] = correctword.toCharArray();
-	     System.out.print("Enter a word: ");
-         choice = sc.nextLine();
-         char ch[] = choice.toCharArray();
-         
-          for(int i = 0;i < names.length;i++){
-                    if( ch[i] == names[i]){
-                       c[i] = "1";
-                    }
-          }
-        
+		
+		System.out.print("Enter a word: ");
+		choice = sc.nextLine();
+		
+		
+		for(int i = 0;i < words.length;i++) {
+			for(int j = 0;j < words.length;j++) {
+				char pili[] = choice.toCharArray();
+				char names[] = correctword.toCharArray();
+				if(pili[j] == names[i]) {
+				
+		            X[j] = "1";
+					checkpili[j] = true;
+					checknames[j] = true;
+					System.out.print(X[i]);
+				}
+				if(pili[j] == names[i] && i != j && checknames[i] == false ) {
+					X[j] = "0";
+					checkpili[j] = true;
+					checknames[j] = true;
+				}
+			}
+		}
+		
+		
+		
+		
 	}
 
 }
-
