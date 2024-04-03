@@ -5,6 +5,8 @@ public class wordle {
 	public static String words[] = {"angel","mouth","mouse","smell","crack"};
 	public static String correctword;
 	public static String choice;
+	public static int ctr = 0;
+	public static String s;
 	public static String X[] = {"X","X","X","X","X"};
 	public static boolean checkpili[] = {false,false,false,false,false};
 	public static boolean checknames[] = {false,false,false,false,false};
@@ -12,39 +14,51 @@ public class wordle {
 	public static Random rd = new Random();
 
 	public static void main(String[] args) {
-		
-		correctword = words[0];
-		Ask_User();
+		int rand = rd.nextInt(5);
+		do {
+			 correctword = words[rand];
+			 Ask_User();
+			 ctr++;
+			 
+			 System.out.print("PLAY AGAIN[Y/N]?: ");
+			 s = sc.nextLine();
+			 
+			 
 
+		} while (s.equals("Y") && ctr < 5 );
+		
 	}
 	public static void Ask_User(){
 		
 		System.out.print("Enter a word: ");
 		choice = sc.nextLine();
 		
-		
-		for(int i = 0;i < words.length;i++) {
+		char pili[] = choice.toCharArray();
+		char names[] = correctword.toCharArray();
 			for(int j = 0;j < words.length;j++) {
-				char pili[] = choice.toCharArray();
-				char names[] = correctword.toCharArray();
-				if(pili[j] == names[i]) {
-				
-		            X[j] = "1";
-					checkpili[j] = true;
+				if(checknames[j]== false && pili[j] == names[j]) {
+					X[j] = "1";
 					checknames[j] = true;
-					System.out.print(X[i]);
-				}
-				if(pili[j] == names[i] && i != j && checknames[i] == false ) {
-					X[j] = "0";
 					checkpili[j] = true;
-					checknames[j] = true;
 				}
 			}
-		}
-		
-		
-		
-		
+			for(int x = 0;x < words.length;x++) {
+				for(int i = 0;i < words.length;i++) {
+					if((checknames[x] == false && checkpili[i] == false) && pili[i] == names[x] && i != x ) {
+						X[i] = "0";
+						checknames[x] = true;
+						checkpili[i] = true;
+						break;
+					}
+				}
+	
+			}
+			
+			for(int y = 0;y < words.length;y++) {
+				System.out.print(X[y]);
+			}
+
+			
 	}
 
 }
