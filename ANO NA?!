@@ -67,8 +67,7 @@ public class wordle {
 				for(int b = 0;b < words.length;b++) {
 					if(X[b].equals("1")) {
 						ctr = 5;
-						System.out.println(correctword);
-						System.out.println("YOU WIN!!! ");
+						
 					}
 				}
 				
