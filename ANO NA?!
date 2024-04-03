@@ -8,6 +8,7 @@ public class wordle {
 	public static int ctr = 0;
 	public static String s;
 	public static String X[] = {"X","X","X","X","X"};
+	public static String XX[] = {"X","X","X","X","X"};
 	public static boolean checkpili[] = {false,false,false,false,false};
 	public static boolean checknames[] = {false,false,false,false,false};
 	public static Scanner sc = new Scanner(System.in);
@@ -16,8 +17,8 @@ public class wordle {
 	public static void main(String[] args) {
 		
 		do {
-			int rand = rd.nextInt(5); 
-			correctword = words[rand];
+			
+			correctword = words[0];
 			 Ask_User();
 			 
 			 
@@ -28,12 +29,15 @@ public class wordle {
 
 		} while (s.equals("Y") );
 		
+		
+		
 	}
 	public static void Ask_User(){
 		for(ctr = 0;ctr < 5;ctr++) {
 
 			System.out.print("Enter a word: ");
 			choice = sc.nextLine();
+			
 			
 			char pili[] = choice.toCharArray();
 			char names[] = correctword.toCharArray();
@@ -59,9 +63,26 @@ public class wordle {
 				for(int y = 0;y < words.length;y++) {
 					System.out.print(X[y]);
 				}
+				
+				for(int b = 0;b < words.length;b++) {
+					if(X[b].equals("1")) {
+						ctr = 5;
+						System.out.println(correctword);
+						System.out.println("YOU WIN!!! ");
+					}
+				}
+				
+				System.out.println();
+				
+				reset();
 
 		}
 			
+	}
+	public static void reset() {
+		for(int i = 0;i < X.length;i++) {
+			X[i] = XX[i];
+		}
 	}
 
 }
