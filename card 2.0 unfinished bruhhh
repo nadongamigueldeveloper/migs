@@ -19,9 +19,9 @@ public class Main{
             // Do not do operations on actual char values, convert it to integer without using any method
 	    for(int i = c.length - 2;i >= 0;i=-2){
 	        product = c[i] * 2;
-	        if(prod >9) {
+	        if(prod >9) { // just use modulo and division to seperate 2 digits, product % 10 + product / 10
 			   prod = Integer.toString(product); // see the ascii chart values you can get the int value of char by subtracting 48
-			   char p[] = Prod.toCharArray(); // why capital "P"? yung prod
+			   char p[] = Prod.toCharArray(); // why capital "P"? yung prod, unnecessary tho
 			   sum = sum + (p[0] + p[1]); // wrong, ichachange molang yung value ng prouct bakit mo agad in-add sa sum? edi 2 times mag-aadd kasi may 
 	        }                                     // addition pa sa alabs ng if statement
 	         sum = sum + product;
