@@ -15,30 +15,31 @@ public class Main{
 	    System.out.print("Enter a your pin: ");
 	    choice = sc.nextLine();
 	    char c[] = choice.toCharArray();
-	    
+
+            // Do not do operations in actual char values, convert it to integer without using any method
 	    for(int i = c.length - 2;i >= 0;i=-2){
 	        product = c[i] * 2;
 	        if(prod >9) {
 			   prod = Integer.toString(product);
-			   char p[] = Prod.toCharArray();
-			   sum = sum + (p[0] + p[1]); 
-	        }
+			   char p[] = Prod.toCharArray(); // why capital "P"? yung prod
+			   sum = sum + (p[0] + p[1]); // wrong, ichachange molang yung value ng prouct bakit mo agad in-add sa sum? edi 2 times mag-aadd kasi may 
+	        }                                     // addition pa sa alabs ng if statement
 	         sum = sum + product;
 	    }
 	    
 	    for(int j = c.length - 1;j >= 0 ; j=-2){
-	        sum2 = sum + c[j];
+	        sum2 = sum + c[j]; // bakit mo sinama yung sum? 
 	    }
 	    
 	   
 	    
-	    if(sum2 % 10 == 0){
+	    if(sum2 % 10 == 0){ // should be (sum2 + sum % 10 == 0)
 	       
-	            for(int x = 0;x < c.length;x++){
+	            for(int x = 0;x < c.length;x++){  // unnecessary loop! you can just use c.length bruh
 	                ctr++;
 	            }
 	            
-	            if((ctr == 13 || ctr == 16) && c[0] == 4){
+	            if((ctr == 13 || ctr == 16) && c[0] == 4){ wrong comparison! shoulbe be '4' since char array yan!
 	                System.out.println("VISA");
 	            } else if(ctr == 15 && (c[0] == 3 && (c[1] == 3 || c[1] == 7))){
 	                System.out.println("AMEX");
