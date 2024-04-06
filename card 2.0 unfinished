@@ -16,7 +16,7 @@ public class Main{
 	    choice = sc.nextLine();
 	    char c[] = choice.toCharArray();
 
-            // Do not do operations in actual char values, convert it to integer without using any method
+            // Do not do operations on actual char values, convert it to integer without using any method
 	    for(int i = c.length - 2;i >= 0;i=-2){
 	        product = c[i] * 2;
 	        if(prod >9) {
