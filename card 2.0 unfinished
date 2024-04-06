@@ -3,9 +3,9 @@ public class Main{
     public static Scanner sc = new Scanner(System.in);
     public static String choice;
     public static int product;
+    public static String prod;
     public static int sum = 0;
     public static int sum2 = 0;
-    public static int sum3 = 0;
     public static boolean valid = false;
     public static int ctr = 0;
 	public static void main(String[] args) {
@@ -18,7 +18,12 @@ public class Main{
 	    
 	    for(int i = c.length - 2;i >= 0;i=-2){
 	        product = c[i] * 2;
-	        sum = sum + product;
+	        if(prod >9) {
+			   prod = Integer.toString(product);
+			   char p[] = Prod.toCharArray();
+			   sum = sum + (p[0] + p[1]); 
+	        }
+	         sum = sum + product;
 	    }
 	    
 	    for(int j = c.length - 1;j >= 0 ; j=-2){
