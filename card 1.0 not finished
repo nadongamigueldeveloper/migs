@@ -1,6 +1,5 @@
-package card;
 import java.util.Scanner;
-public class card {
+public class Main{
 	public static String choice;
 	public static int finalsum = 0;
 	public static int prod;
@@ -8,8 +7,8 @@ public class card {
 	public static int convert2;
 	public static int product;
 	public static int sum2 = 0;
-	public static char ascii = 48;
 	public static int sum = 0;
+	public static char asci = 48;
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -23,24 +22,24 @@ public class card {
 			 char c[] = choice.toCharArray();
 		
 		
-		for(int i = c.length - 2;i >= 1;i =-2) {
-		    convert = c[i] - 48;
+		for(int i = c.length - 2;i >= 0;i =-2) { // i -= 2
+		    convert = c[i] - asci;
 		    prod = (convert * 2);
 		  if(prod > 9) {
-		 	product = prod % 10 + prod / 10;
+		 	product = prod % 10 + prod / 10; // bat sa product mo instore?! sa prod parin yan
 		  }
-		   sum = sum + product;
+		   sum = sum + product; // yung prod and iadd mo not product variable, remove it
 		}
 		
-		for(int j = c.length - 1 ;j >= 1;j =-2){
-		     convert2 = c[j] - 48;
+		for(int j = c.length - 1;j >= 0;j =-2){ // j -= 2
+		     convert2 = c[j] - asci;
 		     sum2 = sum2 + convert2;
 		}
 		
 		finalsum = sum + sum2;
 		
-		if(finalsum % 10 == 0){
-		   if((c.length  == 13 || c.length  == 16) && c[0] == '4') {
+		if(finalsum %10 == 0){
+		    if((c.length  == 13 || c.length  == 16) && c[0] == '4') {
 					
 		   	System.out.println("VISACARD");
 			
