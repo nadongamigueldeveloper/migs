@@ -1,0 +1,68 @@
+package javastring;
+import java.util.Scanner;
+public class javaString {
+	public static Scanner sc = new Scanner(System.in);
+	public static String choice1;
+	public static String ask;
+	public static void main(String[] args) {
+			
+		do{
+			Ask_User();
+			Insert();
+			Add();
+			delete();
+			
+	
+			System.out.print("Exit[Y/N]?: ");
+			ask = sc.nextLine();
+			
+			System.exit(0);
+		} while (ask.equals("N"));
+		
+		
+	}
+	public static void Ask_User() {
+		System.out.print("Enter a sentence: ");
+		choice1 = sc.nextLine();
+	}
+	public static void Insert() {
+		
+		
+		String[]res = choice1.split("_");
+		
+		System.out.print("Insert: " );
+		String choice2 =  sc.nextLine();
+		
+		String s[] = choice2.split(";");
+		
+		int S = Integer.parseInt(s[0]);
+		
+		res[S] = s[1];
+		
+		for(String st: res) {
+			System.out.print(st + "_");
+		}
+		System.out.println();
+			
+	}
+	public static void Add() {
+		System.out.println("Add: ");
+		String choice3 = sc.nextLine();
+		
+		System.out.println(choice1 + "_" + choice3); 
+	}
+	public static void delete() {
+		System.out.println("Delete: ");
+		int d = sc.nextInt();
+		
+		String res[] = choice1.split("_");
+		
+		res[d] = "";
+		
+		for(String st: res) {
+			System.out.print(st + "_");
+		}
+		System.out.println();
+	}
+
+}
