@@ -1,5 +1,6 @@
+package card;
 import java.util.Scanner;
-public class Main{
+public class card {
 	public static String choice;
 	public static int finalsum = 0;
 	public static int prod;
@@ -7,8 +8,8 @@ public class Main{
 	public static int convert2;
 	public static int product;
 	public static int sum2 = 0;
+	public static char ascii = 48;
 	public static int sum = 0;
-	public static char asci = 48;
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -22,8 +23,8 @@ public class Main{
 			 char c[] = choice.toCharArray();
 		
 		
-		for(int i = c.length - 2;i >= 0;i =-2) {
-		    convert = c[i] - asci;
+		for(int i = c.length - 2;i >= 1;i =-2) {
+		    convert = c[i] - 48;
 		    prod = (convert * 2);
 		  if(prod > 9) {
 		 	product = prod % 10 + prod / 10;
@@ -31,15 +32,15 @@ public class Main{
 		   sum = sum + product;
 		}
 		
-		for(int j = c.length - 1;j >= 0;j =-2){
-		     convert2 = c[j] - asci;
+		for(int j = c.length - 1 ;j >= 1;j =-2){
+		     convert2 = c[j] - 48;
 		     sum2 = sum2 + convert2;
 		}
 		
 		finalsum = sum + sum2;
 		
-		if(finalsum %10 == 0){
-		    if((c.length  == 13 || c.length  == 16) && c[0] == '4') {
+		if(finalsum % 10 == 0){
+		   if((c.length  == 13 || c.length  == 16) && c[0] == '4') {
 					
 		   	System.out.println("VISACARD");
 			
