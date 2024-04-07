@@ -1,0 +1,96 @@
+package javaString;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class JAvaString2 {
+	public static ArrayList al = new ArrayList();
+	public static Scanner sc = new Scanner(System.in);
+	public static String addWord; 
+	public static int del;
+	public static String press;
+	public static String a;
+	public static ArrayList<String> words = new ArrayList<>();
+
+
+	public static void main(String[] args) {
+				
+		
+			
+			
+			System.out.print("Enter a sentence: ");
+			String choice1 = sc.nextLine();
+			
+	        String[]res = choice1.split("_");
+	        
+	        for (String word : res) {
+	            words.add(word);
+	        }
+			
+	        for(String ts: words) {
+	        	System.out.print(ts + "_");
+	        }
+	        
+	        System.out.println();
+	     do {
+	        System.out.println("[Menu]");
+	        	Insert();
+	        	Add();
+	        	Delete();
+	        	
+	        System.out.print("Exit[Y/N]");
+	        a = sc.nextLine();
+	        
+		} while (a.equals("N"));
+	}  
+	public static void Insert() {
+		System.out.print("Insert: " );
+		String choice2 =  sc.nextLine();
+		
+		String s[] = choice2.split(";");
+		
+		if (s.length == 2) {
+            int choice3 = Integer.parseInt(s[0]);
+            String bago = s[1];
+
+            if (choice3 >= 1 && choice3 <= words.size() + 1) {
+                words.add(choice3 - 1, bago); 
+            } else {
+                System.out.println("Invalid number");
+            }
+        } else {
+            System.out.println("Invalid input format");
+        }
+
+				
+		 for(String st: words) {
+			 System.out.print(st + "_");
+		 }
+		 
+		 System.out.println();
+	
+	}
+	public static void Add() {
+		 System.out.print("Enter the word to add: ");
+         addWord = sc.nextLine();
+         words.add(addWord);
+         
+         for(String aw: words) {
+        	 System.out.print(aw + "_");
+         }
+         
+         System.out.println();
+    
+	}
+	public static void Delete() {
+         System.out.print("Enter the number to delete: ");
+         del = sc.nextInt();
+         words.remove(del - 1);
+         
+         for(String dl: words) {
+        	 System.out.print(dl + "_");
+         }
+       
+         
+         System.exit(0);
+	}
+
+}
