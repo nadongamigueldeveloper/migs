@@ -19,7 +19,7 @@ public class card {
 			 char c[] = choice.toCharArray();
 		
 		
-		for(int i = c.length - 2;i >= 1;i-=2) {
+		for(int i = c.length - 2;i >= 0;i-=2) {
 		 int   convert = c[i] - 48;
 		 int   prod = (convert * 2);
 		  if(prod > 9) {
@@ -28,7 +28,7 @@ public class card {
 		   sum = sum + prod;
 		}
 		
-		for(int j = c.length - 1 ;j >= 1;j-=2){
+		for(int j = c.length - 1 ;j >= 0;j-=2){
 		   int  convert2 = c[j] - 48;
 		     sum2 = sum2 + convert2;
 		}
