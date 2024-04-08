@@ -12,10 +12,7 @@ public class JAvaString2 {
 
 
 	public static void main(String[] args) {
-				
 		
-			
-			
 			System.out.print("Enter a sentence: ");
 			String choice1 = sc.nextLine();
 			
@@ -31,23 +28,38 @@ public class JAvaString2 {
 	        
 	        System.out.println();
 	     do {
-	        System.out.println("[Menu]");
+	   
+	        System.out.println("Insert[1]");	
+	        System.out.println("Add[2]");
+	        System.out.println("Delete[3]");
+	        
+	        System.out.print("[Menu]: ");
+	        press = sc.nextLine();
+	        
+	        if(press.equals("1")) {
 	        	Insert();
+	        }
+	        if(press.equals("2")) {
 	        	Add();
+	        }
+	        if(press.equals("3")) {
 	        	Delete();
+	        }
+	        
 	        	
-	        System.out.print("Exit[Y/N]");
+	        System.out.print("Exit[Y/N]: ");
 	        a = sc.nextLine();
 	        
 		} while (a.equals("N"));
 	}  
 	public static void Insert() {
+	
 		System.out.print("Insert: " );
 		String choice2 =  sc.nextLine();
 		
 		String s[] = choice2.split(";");
 		
-		if (s.length == 2) {
+	if (s.length == 2) {
             int choice3 = Integer.parseInt(s[0]);
             String bago = s[1];
 
@@ -69,7 +81,8 @@ public class JAvaString2 {
 	
 	}
 	public static void Add() {
-		 System.out.print("Enter the word to add: ");
+		
+		System.out.print("Enter the word to add: ");
          addWord = sc.nextLine();
          words.add(addWord);
          
@@ -81,6 +94,7 @@ public class JAvaString2 {
     
 	}
 	public static void Delete() {
+		
          System.out.print("Enter the number to delete: ");
          del = sc.nextInt();
          words.remove(del - 1);
