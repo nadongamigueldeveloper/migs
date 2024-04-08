@@ -50,6 +50,8 @@ public class JAvaString2 {
 	        System.out.print("Exit[Y/N]: ");
 	        a = sc.nextLine();
 	        
+	  
+	        
 		} while (a.equals("N"));
 	}  
 	public static void Insert() {
@@ -59,7 +61,7 @@ public class JAvaString2 {
 		
 		String s[] = choice2.split(";");
 		
-	if (s.length == 2) {
+		if (s.length == 2) {
             int choice3 = Integer.parseInt(s[0]);
             String bago = s[1];
 
@@ -103,8 +105,8 @@ public class JAvaString2 {
         	 System.out.print(dl + "_");
          }
        
-         
-         System.exit(0);
+         System.out.println();
+       
 	}
 
 }
