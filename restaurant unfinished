@@ -11,7 +11,7 @@ public class main {
 	
 
 	public static void main(String[] args) {	
-      while(test == false  ) {
+      while(test != true  ) {
     	  get_cost();
     	  if(ctr < 4 && test == true) {
     		  get_cost();
@@ -34,21 +34,14 @@ public class main {
 		  System.out.print("Enter an item: ");
 			choice = sc.nextLine();
 			
-			ctr = 0;
-			
 		    test = choice.isEmpty();
 			if(test = true) {
 				return;
 			}
 			
-			for(int i = 0;i < choice.length();i++) {
-				char ch = choice.charAt(i);
-				if(Character.isUpperCase(ch)) {
-					add_items();
-				}else if(Character.isLowerCase(ch)) {
-					add_items();
-				}
-			}
+			
+			
+		
 				
 				
 			
