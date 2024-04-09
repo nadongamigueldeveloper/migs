@@ -6,7 +6,7 @@ public class main2 {
 	public static ArrayList<String> menu = new ArrayList<>();
 	public static ArrayList<Double> price = new ArrayList<>();
 	public static String choice;
-	public static double totalbill;
+	public static double totalbill = 0;
 	public static int ctr = 0;
 	
 	public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class main2 {
 		price.add(11.00);
 		price.add(5.00);
 		price.add(7.00);
-		price.add(5.00); // DO NOT HARDCODE
+		price.add(5.00);
 		price.add(6.00);
 		price.add(7.00);
 		price.add(3.00);
@@ -38,37 +38,37 @@ public class main2 {
 	
 	}
 	public static void get_cost() {
+		
 		while(true) {
 			System.out.print("Enter an item: ");
 			choice = sc.nextLine();
-	
-			ctr++; // WRONG, WHY ARE U INCREMENTING ALREADY, SO IF NAGENTER PALA YUNG USER NG ITEM NA WALA SA MENU MAGAADD 1 YAN?
+			choice.toLowerCase();
 			
+	
 			if(choice.equals("") && ctr >= 4) {
 				return;
 			}
 			
-			add_items(); // YOU CAN'T JUST CALL THIS METHOD WITHOUT A CONDITION
-	
+			if(ctr >= 4) {
+				add_items();
+			
+			}
+		
+			
 		}
 	}
 	public static void add_items() {
 		 int hanap = menu.indexOf(choice); //searching the index of choice in the menu
 		 double search = price.get(hanap); // accessing the elements via index
-		 String order = menu.get(hanap); // dito ko papasok yung element which is yung item para ma compare ko and maignore case
-		 
 		
-		// YOU ARE MAKING IT COMPLICATED, LOOK AT THE WORDS IN THE MENU, THEY ARE ALL LOWERCASE
-                // WHAT WOULD YOU DO TO THE USER-ENTERED STRING AND WHICH METHOD SHOULD U USE? PARA MAGMATCH SILA?
-			 if(order.equalsIgnoreCase(choice)) {
 				 if(menu.contains(choice)) {
-				   totalbill = totalbill + search;
+					 ctr++;
+				    totalbill = totalbill + search;
 					return;
+					
 				 }
-			 }
-			
-			
-		
+				 
+	
 	}
 
 }
