@@ -31,6 +31,8 @@ public class main {
            System.out.print("Enter an item: ");
 	   choice = sc.nextLine();
 
+            ctr++;
+
            if(choice.equals("") && ctr >= 4){
              return;
            }
