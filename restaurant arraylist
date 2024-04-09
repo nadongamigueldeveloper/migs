@@ -1,0 +1,73 @@
+package restaurant2;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class main2 {
+	public static Scanner sc = new Scanner(System.in);
+	public static ArrayList<String> menu = new ArrayList<>();
+	public static ArrayList<Double> price = new ArrayList<>();
+	public static String choice;
+	public static double totalbill;
+	public static int ctr = 0;
+	
+	public static void main(String[] args) {
+		menu.add("burger");
+		menu.add("vegan burger");
+		menu.add("hot dog");
+		menu.add("cheese dog");
+		menu.add("fries");
+		menu.add("cheesefries");
+		menu.add("cold pressed juice");
+		menu.add("cold brew");
+		menu.add("water");
+		menu.add("soda");
+		
+		price.add(9.50);
+		price.add(11.00);
+		price.add(5.00);
+		price.add(7.00);
+		price.add(5.00);
+		price.add(6.00);
+		price.add(7.00);
+		price.add(3.00);
+		price.add(2.00);
+		price.add(2.00);
+		
+		get_cost();
+		
+		 System.out.println("$" + totalbill);
+	
+	}
+	public static void get_cost() {
+		while(true) {
+			System.out.print("Enter an item: ");
+			choice = sc.nextLine();
+	
+			ctr++;
+			
+			if(choice.equals("") && ctr >= 4) {
+				return;
+			}
+			
+			add_items();
+	
+		}
+	}
+	public static void add_items() {
+		 int hanap = menu.indexOf(choice); //searching the index of choice in the menu
+		 double search = price.get(hanap); // accessing the elements via index
+		 String order = menu.get(hanap); // dito ko papasok yung element which is yung item para ma compare ko and maignore case
+		 
+		
+		
+			 if(order.equalsIgnoreCase(choice)) {
+				 if(menu.contains(choice)) {
+				   totalbill = totalbill + search;
+					return;
+				 }
+			 }
+			
+			
+		
+	}
+
+}
