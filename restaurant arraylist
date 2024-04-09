@@ -43,14 +43,15 @@ public class main2 {
 			System.out.print("Enter an item: ");
 			choice = sc.nextLine();
 			choice.toLowerCase();
+                           // WHAT IF THE USER ACCIDENTALLY PUT A SPACE AFTER WORD  burger_
 			
 	
 			if(choice.equals("") && ctr >= 4) {
 				return;
-			}
+			}  // WHAT IF THE USER ENTERED "" PREMATURELY IN YOUR PROGRAM
 			
-			if(ctr >= 4) {
-				add_items();
+			if(ctr >= 4) { // WRONG, THERE WOULD BE ONLY ONE CONDITION FOR CTR >= 4
+				add_items(); // WRONG LOGIC AND CONDITION
 			
 			}
 		
@@ -58,13 +59,13 @@ public class main2 {
 		}
 	}
 	public static void add_items() {
-		 int hanap = menu.indexOf(choice); //searching the index of choice in the menu
-		 double search = price.get(hanap); // accessing the elements via index
+		 int hanap = menu.indexOf(choice);  // WRONG, MAGKAKABUG YAN. WHAT IF WALA SA MENU YUNG CHOICE? MAG NENEGA YUNG INDEX na masstore sa HANAP
+		 double search = price.get(hanap); // WRONG KASI WRONG DIN YUNG PREV LINE
 		
-				 if(menu.contains(choice)) {
-					 ctr++;
+				 if(menu.contains(choice)) { // WALA KANG CINDITION NA ILALAGAY SA LOOB NG METHOD NATO
+					 ctr++;             // HINDI KA RITO MAGIINCREMENT
 				    totalbill = totalbill + search;
-					return;
+					return; // UNNECESSARY USE OF RETURN
 					
 				 }
 				 
