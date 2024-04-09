@@ -11,12 +11,9 @@ public class main {
 	
 
 	public static void main(String[] args) {	
-      while(test != true  ) {
+   
     	  get_cost();
-    	  if(ctr < 4 && test == true) {
-    		  get_cost();
-    	  }
-      }
+    	 
 	
 	 System.out.print("$" + totalbill);
 
@@ -30,15 +27,16 @@ public class main {
 	 }
 	}
 	public static void get_cost() {
-	
-		  System.out.print("Enter an item: ");
-			choice = sc.nextLine();
-			
-		    test = choice.isEmpty();
-			if(test = true) {
-				return;
-			}
-			
+	 while(true){
+           System.out.print("Enter an item: ");
+	   choice = sc.nextLine();
+
+           if(choice.equals("") && ctr >= 4){
+             return;
+           }
+
+            add_items();
+        }
 			
 			
 		
@@ -48,6 +46,6 @@ public class main {
 	
 	    
 		
-	}
+        }
 
 }
