@@ -1,36 +1,28 @@
 package restaurant2;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+
 public class main2 {
 	public static Scanner sc = new Scanner(System.in);
-	public static ArrayList<String> menu = new ArrayList<>();
-	public static ArrayList<Double> price = new ArrayList<>();
+	public static ArrayList<String> menu = new ArrayList<String>(Arrays.asList("burger","vegan burger","hot dog","cheese dog","fries","cheese fries","cold pressed juice","cold brew","water","soda"));
+	public static ArrayList<Double> price = new ArrayList<Double>(Arrays.asList(9.50,11.00,5.00,7.00,5.00,6.00,7.00,3.00, 2.00,2.00));
 	public static String choice;
 	public static double totalbill = 0;
-	public static int ctr = 0;
+	public static int ctr;
 	
 	public static void main(String[] args) {
-		menu.add("burger");
-		menu.add("vegan burger");
-		menu.add("hot dog");
-		menu.add("cheese dog");
-		menu.add("fries");
-		menu.add("cheesefries");
-		menu.add("cold pressed juice");
-		menu.add("cold brew");
-		menu.add("water");
-		menu.add("soda");
 		
-		price.add(9.50);
-		price.add(11.00);
-		price.add(5.00);
-		price.add(7.00);
-		price.add(5.00);
-		price.add(6.00);
-		price.add(7.00);
-		price.add(3.00);
-		price.add(2.00);
-		price.add(2.00);
+		System.out.println("Burger: $9.50");
+		System.out.println("Vegan Burger: $11.00");
+		System.out.println("Hot Dog: $5.00");
+		System.out.println("Cheese Dog: $7.00");
+		System.out.println("Fries: $5.00");
+		System.out.println("Cheese Fries: $6.00");
+		System.out.println("Cold Pressed Juice: $7.00");
+		System.out.println("Cold Brew: $3.00");
+		System.out.println("Water: $2.00");
+		System.out.println("Soda: $2.00");
 		
 		get_cost();
 		
@@ -42,32 +34,29 @@ public class main2 {
 		while(true) {
 			System.out.print("Enter an item: ");
 			choice = sc.nextLine();
-			choice.toLowerCase();
-                           // WHAT IF THE USER ACCIDENTALLY PUT A SPACE AFTER WORD  burger_
+			choice = choice.toLowerCase().trim();
 			
-	
-			if(choice.equals("") && ctr >= 4) {
-				return;
-			}  // WHAT IF THE USER ENTERED "" PREMATURELY IN YOUR PROGRAM
+		     if(menu.contains(choice)) {
+		    	 ctr++;
+		    	add_items();
+					
+		     }
+				if(choice.equals("") && ctr >= 4) {
+					return;
+				}
 			
-			if(ctr >= 4) { // WRONG, THERE WOULD BE ONLY ONE CONDITION FOR CTR >= 4
-				add_items(); // WRONG LOGIC AND CONDITION
-			
-			}
-		
-			
+			   if(ctr < 4 && choice.equals("")) {
+				System.out.println("Enter atleast 4 items");
+			   }
+
 		}
 	}
 	public static void add_items() {
-		 int hanap = menu.indexOf(choice);  // WRONG, MAGKAKABUG YAN. WHAT IF WALA SA MENU YUNG CHOICE? MAG NENEGA YUNG INDEX na masstore sa HANAP
-		 double search = price.get(hanap); // WRONG KASI WRONG DIN YUNG PREV LINE
+		 int hanap = menu.indexOf(choice); 
+		 double search = price.get(hanap); 
+		 
+		 totalbill = totalbill + search;
 		
-				 if(menu.contains(choice)) { // WALA KANG CINDITION NA ILALAGAY SA LOOB NG METHOD NATO
-					 ctr++;             // HINDI KA RITO MAGIINCREMENT
-				    totalbill = totalbill + search;
-					return; // UNNECESSARY USE OF RETURN
-					
-				 }
 				 
 	
 	}
