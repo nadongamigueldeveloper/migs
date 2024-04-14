@@ -22,19 +22,19 @@ public class ciphertextmain {
              if (Character.isUpperCase(ch)) {
                  for (int j = 0; j < upper.length; j++) {
                      if (ch == upper[j]) {
-                         ct += subs.charAt(j);
-                         break;
+                         ct = ct + subs.charAt(j);
+                        
                      }
                  }
              } else if (Character.isLowerCase(ch)) {
                  for (int k = 0; k < lower.length; k++) {
                      if (ch == lower[k]) {
-                         ct += subs2.charAt(k);
-                         break;
+                         ct = ct + subs2.charAt(k);
+                        
                      }
                  }
              } else {
-                 ct += ch; 
+                 ct = ct + ch; 
              }
          }
 
