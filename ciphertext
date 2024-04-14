@@ -1,0 +1,47 @@
+package ciphertext;
+import java.util.Scanner;
+public class ciphertextmain {
+	public static String choice ;
+	public static String choicedup;
+	public static String subs = "YTNSHKVEFXRBAUQZCLWDMIPGJO";
+	public static char upper[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+	public static char lower[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	public static String s;
+	public static String c;
+	
+	public static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		Ask_User();
+		
+		for(int i = 0; i < choice.length();i++) {
+			System.out.print(c);
+		}
+
+	}
+	public static void Ask_User() {
+		System.out.print("Enter a plaintext: ");
+		choice = sc.nextLine();
+		
+		choicedup = choice;
+		
+		for(int i = 0;i < choicedup.length();i++) {
+			char cd = choicedup.charAt(i);
+			if(Character.isUpperCase(cd)) {
+				cd = upper[i];
+			}
+			if(Character.isLowerCase(i)) {
+				cd = lower[i];
+			}
+			
+		}
+		
+		
+		
+		
+		
+    
+		
+	}
+
+}
