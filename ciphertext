@@ -31,8 +31,8 @@ public class ciphertextmain {
 		char sb2[] = subs2.toCharArray();
 		
 		for(int i = 0;i < choicedup.length();i++) {
-			int j = 0;
-			for( j = 0 ;j < upper.length;j++) {
+			
+			for(int j = 0 ;j < upper.length;j++) {
 				if(Character.isUpperCase(cd[i])) {
 					if(cd[i] == upper[j]) {
 						cd[i] = sb[j];
