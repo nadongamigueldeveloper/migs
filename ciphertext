@@ -2,7 +2,7 @@ package ciphertext;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class ciphertextmain {
-	public static String subs =  "YTNSHKVEFXRBAUQZCLWDMIPGJO";
+    public static String subs =  "YTNSHKVEFXRBAUQZCLWDMIPGJO";
     public static String subs2 = "ytnshkvefxrbauqzclwdmipgjo";
     public static char upper[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     public static char lower[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
@@ -15,7 +15,7 @@ public class ciphertextmain {
     	 System.out.println("Substitution: " + subs);
          System.out.print("Enter a plaintext: ");
          String choice = sc.nextLine();
-         String ct = "";
+         String ct;
 
          for (int i = 0; i < choice.length(); i++) {
              char ch = choice.charAt(i);
