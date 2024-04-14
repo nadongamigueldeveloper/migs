@@ -1,9 +1,11 @@
 package ciphertext;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class ciphertextmain {
 	public static String choice ;
 	public static String choicedup;
 	public static String subs = "YTNSHKVEFXRBAUQZCLWDMIPGJO";
+	public static String subs2 = "ytnshkvefxrbauqzclwdmipgjo";
 	public static char upper[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 	public static char lower[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 	public static String s;
@@ -12,25 +14,37 @@ public class ciphertextmain {
 	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		System.out.println("Substitution: " + subs);
+		
 		Ask_User();
 		
 		
-
 	}
 	public static void Ask_User() {
 		System.out.print("Enter a plaintext: ");
 		choice = sc.nextLine();
 		
 		choicedup = choice;
+		char cd[] = choicedup.toCharArray(); 
+		
+		char sb[] = subs.toCharArray();
+		char sb2[] = subs2.toCharArray();
 		
 		for(int i = 0;i < choicedup.length();i++) {
-			char cd = choicedup.charAt(i);
-			if(Character.isUpperCase(cd)) {
-				cd = upper[i];
+			int j = 0;
+			for( j = 0 ;j < upper.length;j++) {
+				if(Character.isUpperCase(cd[i])) {
+					if(cd[i] == upper[j]) {
+						cd[i] = sb[j];
+					}
+				}
+				if(Character.isLowerCase(cd[i])) {
+					if(cd[i] == lower[j]) {
+						cd[i] = sb2[j];
+					}
+				}
 			}
-			if(Character.isLowerCase(i)) {
-				cd = lower[i];
-			}
+			System.out.print(cd[i]);
 			
 		}
 		
