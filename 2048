@@ -1,0 +1,44 @@
+package game204;
+import java.util.Scanner;
+import java.util.Random;
+
+public class gameee {
+	public static Scanner sc = new Scanner(System.in);
+	public static Random rd = new Random();
+	public static String board[][] = {{"_","_","_","_"} ,{"_","_","_","_"} ,{"_","_","_","_"} ,{"_","_","_","_"}};
+	public static int row,column,row1,column1;
+	public static String choice;
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	public static void print_table() {
+		
+		
+		for(int i = 0;i < board.length;i++) {
+			for(int j = 0;j < board[0].length;j++) {
+				System.out.print(" " + board[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+	}
+	public static void Random() {	
+		
+		do{
+			row = rd.nextInt(4);
+			column = rd.nextInt(4);
+			row1 = rd.nextInt(4);
+			column1 = rd.nextInt(4);
+		} while (!board[row][column].equals("_"));
+		
+		board[row][column] = "2";
+		board[row1][column1] = "2";
+		
+	}
+	
+	
+
+}
