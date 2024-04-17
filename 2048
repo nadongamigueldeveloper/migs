@@ -1,17 +1,21 @@
 package game204;
 import java.util.Scanner;
 import java.util.Random;
-
 public class gameee {
 	public static Scanner sc = new Scanner(System.in);
 	public static Random rd = new Random();
 	public static String board[][] = {{"_","_","_","_"} ,{"_","_","_","_"} ,{"_","_","_","_"} ,{"_","_","_","_"}};
 	public static int row,column,row1,column1;
 	public static String choice;
+	public static boolean gameover = false;
 	
 	public static void main(String[] args) {
 		
+		Check();
 		
+		if(gameover = true) {
+		  System.out.print("YOU WIN");
+		}
 		
 	}
 	public static void print_table() {
@@ -35,10 +39,141 @@ public class gameee {
 		} while (!board[row][column].equals("_"));
 		
 		board[row][column] = "2";
-		board[row1][column1] = "2";
+		
 		
 	}
+	public static void Ask_User() {
+		System.out.print("Enter a move[W/A/S/D]: ");
+		choice = sc.nextLine().toUpperCase();
+		
+		if(choice.equals("W")) {
+			moveUp();
+			print_table();
+		}else if(choice.equals("A")) {
+			moveLeft();
+			print_table();
+		}else if(choice.equals("S")) {
+			moveDown();
+			print_table();
+		}else if(choice.equals("D")) {
+			moveRight();
+			print_table();
+		}
+	}
+	public static void moveUp() {
+	    for (int j = 0; j < board[0].length; j++) {
+	        for (int i = 1; i < board.length; i++) {
+	            if (!board[i][j].equals("_")) {
+	                int k = i;
+	                while (k > 0 && (board[k - 1][j].equals("_") || board[k - 1][j].equals(board[k][j]))) {
+	                    if (board[k - 1][j].equals("_")) {
+	                        board[k - 1][j] = board[k][j];
+	                        board[k][j] = "_";
+	                    } else if (board[k - 1][j].equals(board[k][j])) {
+	                        int val = Integer.parseInt(board[k - 1][j]) * 2;
+	                        board[k - 1][j] = String.valueOf(val);
+	                        board[k][j] = "_";
+	                    }
+	                    k--;
+	                }
+	            }
+	        }
+	    }
+	}
+	public static void moveDown() {
+	    for (int j = 0; j < board[0].length; j++) {
+	        for (int i = board.length - 2; i >= 0; i--) {
+	            if (!board[i][j].equals("_")) {
+	                int k = i;
+	                while (k < board.length - 1 && (board[k + 1][j].equals("_") || board[k + 1][j].equals(board[k][j]))) {
+	                    if (board[k + 1][j].equals("_")) {
+	                        board[k + 1][j] = board[k][j];
+	                        board[k][j] = "_";
+	                    } else if (board[k + 1][j].equals(board[k][j])) {
+	                        int val = Integer.parseInt(board[k + 1][j]) * 2;
+	                        board[k + 1][j] = String.valueOf(val);
+	                        board[k][j] = "_";
+	                    }
+	                    k++;
+	                }
+	            }
+	        }
+	    }
+	}
+	public static void moveRight() {
+	    for (int i = 0; i < board.length; i++) {
+	        for (int j = board[i].length - 2; j >= 0; j--) {
+	            if (!board[i][j].equals("_")) {
+	                int k = j;
+	                while (k < board[i].length - 1 && (board[i][k + 1].equals("_") || board[i][k + 1].equals(board[i][k]))) {
+	                    if (board[i][k + 1].equals("_")) {
+	                        board[i][k + 1] = board[i][k];
+	                        board[i][k] = "_";
+	                    } else if (board[i][k + 1].equals(board[i][k])) {
+	                        int val = Integer.parseInt(board[i][k + 1]) * 2;
+	                        board[i][k + 1] = String.valueOf(val);
+	                        board[i][k] = "_";
+	                    }
+	                    k++;
+	                }
+	            }
+	        }
+	    }
+	}
+	public static void moveLeft() {
+	    for (int i = 0; i < board.length; i++) {
+	        for (int j = 1; j < board[i].length; j++) {
+	            if (!board[i][j].equals("_")) {
+	                int k = j;
+	                while (k > 0 && (board[i][k - 1].equals("_") || board[i][k - 1].equals(board[i][k]))) {
+	                    if (board[i][k - 1].equals("_")) {
+	                        board[i][k - 1] = board[i][k];
+	                        board[i][k] = "_";
+	                    } else if (board[i][k - 1].equals(board[i][k])) {
+	                        int val = Integer.parseInt(board[i][k - 1]) * 2;
+	                        board[i][k - 1] = String.valueOf(val);
+	                        board[i][k] = "_";
+	                    }
+	                    k--;
+	                }
+	            }
+	        }
+	    }
+	}
+	public static void Check() {
+		Random();
+		print_table();
+		
+		for(int i = 0;i < board.length;i++) {
+			for(int j = 0;j < board[0].length;j++) {
+				while(gameover != true || !board[i][j].equals("2048")) {
+					Ask_User();
+					Random();
+					gameover();
+				}
+			}
+		}
+		
+	}
+	public static void gameover() {
+		for(int i = 0;i < board.length;i++) {
+			for(int j = 0;j < board[0].length;j++) {
+				if(board[i][j].equals("_")) {
+					gameover = false;
+				}else if(i > 0 && board[i -1][j].equals("_")) {
+					gameover = false; // can up
+				}else if(i < board.length - 1 && board[i + 1][j].equals("_")) {
+					gameover = false; // can down
+				}else if(j < board[0].length && board[i][j + 1].equals("_")) {
+					gameover = false; // can right
+				}else if(j > 0 && board[i][j - 1].equals("_")) {
+					gameover = false; // can left
+				}
+			}
+		}
+		gameover = true;
+		
 	
-	
+	}
 
 }
