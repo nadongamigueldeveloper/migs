@@ -8,13 +8,25 @@ public class gameee {
 	public static int row,column,row1,column1;
 	public static String choice;
 	public static boolean gameover = false;
+	public static boolean gameover1 = false;
 	
 	public static void main(String[] args) {
 		
-		Check();
+		Random();
+		print_table();
 		
-		if(gameover = true) {
-		  System.out.print("YOU WIN");
+		while(gameover == false && gameover1 == false) {
+			Ask_User();
+			Random();
+			gameover();
+			gamecheck();
+		}
+		
+		if(gameover == true) {
+			System.out.print("YOU LOSE");
+		}
+		if(gameover1 == true) {
+			System.out.print("YOU WIN");
 		}
 		
 	}
@@ -140,40 +152,40 @@ public class gameee {
 	        }
 	    }
 	}
-	public static void Check() {
-		Random();
-		print_table();
+	
+	public static void gameover() {
+		gameover = true; // Assume game over unless a valid move is found
 		
 		for(int i = 0;i < board.length;i++) {
-			for(int j = 0;j < board[0].length;j++) {
-				while(gameover != true || !board[i][j].equals("2048")) {
-					Ask_User();
-					Random();
-					gameover();
+			for(int j = 0;j < board[i].length;j++) {
+				if(board[i][j].equals("_")) {
+					gameover = false;
+					return;
+				}else if(i > 0 && board[i -1][j].equals("_")) {
+					gameover = false; // can up
+					return;
+				}else if(i < board.length - 1 && board[i + 1][j].equals("_")) {
+					gameover = false; // can down
+					return;
+				}else if(j < board[0].length && board[i][j + 1].equals("_")) {
+					gameover = false; // can right
+					return;
+				}else if(j > 0 && board[i][j - 1].equals("_")) {
+					gameover = false; // can left
+					return;
 				}
 			}
 		}
 		
 	}
-	public static void gameover() {
+	public static void gamecheck() {
 		for(int i = 0;i < board.length;i++) {
 			for(int j = 0;j < board[0].length;j++) {
-				if(board[i][j].equals("_")) {
-					gameover = false;
-				}else if(i > 0 && board[i -1][j].equals("_")) {
-					gameover = false; // can up
-				}else if(i < board.length - 1 && board[i + 1][j].equals("_")) {
-					gameover = false; // can down
-				}else if(j < board[0].length && board[i][j + 1].equals("_")) {
-					gameover = false; // can right
-				}else if(j > 0 && board[i][j - 1].equals("_")) {
-					gameover = false; // can left
+				if(board[i][j].equals("2048")) {
+					gameover1 = true;
 				}
 			}
 		}
-		gameover = true;
-		
-	
 	}
 
 }
