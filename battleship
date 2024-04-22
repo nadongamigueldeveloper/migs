@@ -1,0 +1,81 @@
+package battleship2;
+import java.util.Scanner;
+import java.util.Random;
+public class battleship {
+	public static Scanner sc = new Scanner(System.in);
+	public static Random rd = new Random();
+	public static String board[][] = {{"_","_","_"},{"_","_","_"},{"_","_","_"}};
+	public static String choice1r,choice1c, choice2r,choice2c;
+	public static int rand,rand1,randd,randd1;
+	public static boolean wins = false;
+
+	public static void main(String[] args) {
+		print_table();
+		Random1();
+		
+		while(wins == false) {
+			Attack1();
+		    Attack2();
+		}
+		
+		
+
+	}
+	public static void print_table() {
+		for(int i = 0;i < board.length;i++) {
+			for(int j = 0;j < board[0].length;j++) {
+				System.out.print(" " + board[i][j]+ " ");
+			}
+			System.out.println();
+		}
+			
+	}
+	public static void Random1() {
+		 rand = rd.nextInt(3); //player1
+		 rand1 = rd.nextInt(3);
+		board[rand][rand1] = "0"; // ship
+		
+		 randd = rd.nextInt(3); //player2
+		 randd1 = rd.nextInt(3);
+		board[randd][randd1] = "0"; //ship
+		
+		
+	}
+	public static void Attack1() {
+		System.out.print("Enter attack Player1 row[1-3]: ");
+		choice1r = sc.nextLine();
+		int row = Integer.parseInt(choice1r) - 1;
+		
+		System.out.print("Enter attack Player1 col[1-3]: ");
+		choice1c = sc.nextLine();
+		int col = Integer.parseInt(choice1c) - 1;
+		
+		if(row == randd && col == randd1) {
+			System.out.print("PLAYER 1 WINS!!!");
+			wins = true;
+		}else {
+			System.out.println("Miss");
+		}
+			
+		
+	}
+	public static void Attack2() {
+		System.out.print("Enter attack Player2 row[1-3]: ");
+		choice2r = sc.nextLine();
+		int row = Integer.parseInt(choice2r) - 1;
+		
+		System.out.print("Enter attack PLayer2 col[1-3]: ");
+		choice2c = sc.nextLine();
+		int col = Integer.parseInt(choice2c) - 1;
+	
+		if(row == rand && col == rand1) {
+			System.out.print("PLAYER 2 WINS!!!");
+			wins = true;
+		}else {
+			System.out.println("Miss");
+		}
+			
+		
+	}
+
+}
