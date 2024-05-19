@@ -1,0 +1,100 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.Scanner;
+import java.io.IOException;
+import java.io.File;
+
+public class Main {
+
+    public static void add() throws IOException {
+        BufferedWriter adds = new BufferedWriter(new FileWriter("Students.txt", true));
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Student ID: ");
+        String ID = sc.nextLine();
+        System.out.print("Enter Student Name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter Student course: ");
+        String cr = sc.nextLine();
+        String status = "active";
+        adds.write(ID + "*" + name + "*" + cr + "*" + status + "*" + "\n");
+        System.out.println("Successfully added the Student");
+        adds.close(); // Explicitly close the BufferedWriter
+        sc.close(); // Close the Scanner
+    }
+
+    public static void Students() throws IOException {
+        BufferedReader view = new BufferedReader(new FileReader("Students.txt"));
+        String stud;
+        while ((stud = view.readLine()) != null) {
+            String[] roar = stud.split("\\*");
+            if (roar.length >= 4) {
+                System.out.println("ID: " + roar[0] + " Name: " + roar[1] + " Course: " + roar[2] + "Status: " + roar[3]);
+            }
+        }
+        view.close(); // Explicitly close the BufferedReader
+    }
+    
+    
+
+    public static void archive() throws IOException {
+      Scanner sc = new Scanner(System.in);
+      System.out.print("Enter student ID to update: ");
+      String idupdate = sc.nextLine();
+
+      File input = new File("Students.txt");
+      File temp = new File("temp.txt");
+
+      if (!input.exists()) {
+        System.out.println("Student file does not exist");
+        return;
+      }
+
+      BufferedReader reader = new BufferedReader(new FileReader(input));
+      BufferedWriter tempWriter = new BufferedWriter(new FileWriter(temp));
+
+      String line;
+      boolean found = false;
+
+      while ((line = reader.readLine()) != null) {
+        tempWriter.write(line + "\n");
+      }
+
+      reader.close();
+      tempWriter.close();
+
+      BufferedReader tempReader = new BufferedReader(new FileReader(temp));
+      BufferedWriter inputWriter = new BufferedWriter(new FileWriter(input, false));
+
+      while ((line = tempReader.readLine()) != null) {
+        String[] field = line.split("\\*");
+        if (field[0].equals(idupdate) && field.length >= 4) {
+            found = true;
+            System.out.print("Enter a new status: ");
+            String newStatus = sc.nextLine();
+            line = field[0] + "*" + field[1] + "*" + field[2] + "*" + newStatus;
+            System.out.println("Updating record: " + line);
+        }
+          inputWriter.write(line + "\n");
+      }
+
+      tempReader.close();
+      inputWriter.close();
+
+      if (!found) {
+        System.out.println("Student ID not found or invalid format");
+      }
+    
+   }
+ 
+   public static void search() throws IOException(){
+     
+   }
+
+    public static void main(String[] args) throws IOException {
+        add();
+        Students();
+        archive();
+    }
+}
