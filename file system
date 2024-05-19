@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -8,9 +9,10 @@ import java.io.File;
 
 public class Main {
 
+    private static Scanner sc = new Scanner(System.in); 
+
     public static void add() throws IOException {
         BufferedWriter adds = new BufferedWriter(new FileWriter("Students.txt", true));
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter Student ID: ");
         String ID = sc.nextLine();
         System.out.print("Enter Student Name: ");
@@ -20,8 +22,7 @@ public class Main {
         String status = "active";
         adds.write(ID + "*" + name + "*" + cr + "*" + status + "*" + "\n");
         System.out.println("Successfully added the Student");
-        adds.close(); // Explicitly close the BufferedWriter
-        sc.close(); // Close the Scanner
+        adds.close(); 
     }
 
     public static void Students() throws IOException {
@@ -30,71 +31,312 @@ public class Main {
         while ((stud = view.readLine()) != null) {
             String[] roar = stud.split("\\*");
             if (roar.length >= 4) {
-                System.out.println("ID: " + roar[0] + " Name: " + roar[1] + " Course: " + roar[2] + "Status: " + roar[3]);
+                System.out.println("ID: " + roar[0] + " Name: " + roar[1] + " Course: " + roar[2] + " Status: " + roar[3]);
             }
         }
-        view.close(); // Explicitly close the BufferedReader
+        view.close();
     }
-    
-    
+
+    public static void update() throws IOException {
+        System.out.print("Enter student ID to update: ");
+        String idupdate = sc.nextLine();
+
+        File input = new File("Students.txt");
+        File temp = new File("temp.txt");
+
+        if (!input.exists()) {
+            System.out.println("Student file does not exist");
+            return;
+        }
+
+        BufferedReader reader = new BufferedReader(new FileReader(input));
+        BufferedWriter tempWriter = new BufferedWriter(new FileWriter(temp));
+
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            tempWriter.write(line + "\n");
+        }
+
+        reader.close();
+        tempWriter.close();
+
+        BufferedReader tempReader = new BufferedReader(new FileReader(temp));
+        BufferedWriter inputWriter = new BufferedWriter(new FileWriter(input, false));
+
+        while ((line = tempReader.readLine()) != null) {
+            String[] field = line.split("\\*");
+
+            if (field[0].equals(idupdate) && field.length >= 3) {
+                found = true;
+                System.out.println("Found record to update: " + line);
+                System.out.print("Enter a new name: ");
+                String newname = sc.nextLine();
+                System.out.print("Enter a new course: ");
+                String newcourse = sc.nextLine();
+                line = idupdate + "*" + newname + "*" + newcourse + "*" + "active";
+                System.out.println("Updating record: " + line);
+            }
+            inputWriter.write(line + "\n");
+        }
+
+        tempReader.close();
+        inputWriter.close();
+
+        if (!found) {
+            System.out.println("Student ID not found or invalid format");
+        }
+
+        if (!temp.delete()) {
+            System.out.println("Failed to delete temp file");
+            return;
+        }
+
+        System.out.println("File updated successfully");
+    }
 
     public static void archive() throws IOException {
-      Scanner sc = new Scanner(System.in);
-      System.out.print("Enter student ID to update: ");
-      String idupdate = sc.nextLine();
+        System.out.print("Enter student ID to update: ");
+        String idupdate = sc.nextLine();
 
-      File input = new File("Students.txt");
-      File temp = new File("temp.txt");
+        File inputs = new File("Students.txt");
+        File tempy = new File("temp.txt");
 
-      if (!input.exists()) {
-        System.out.println("Student file does not exist");
-        return;
-      }
-
-      BufferedReader reader = new BufferedReader(new FileReader(input));
-      BufferedWriter tempWriter = new BufferedWriter(new FileWriter(temp));
-
-      String line;
-      boolean found = false;
-
-      while ((line = reader.readLine()) != null) {
-        tempWriter.write(line + "\n");
-      }
-
-      reader.close();
-      tempWriter.close();
-
-      BufferedReader tempReader = new BufferedReader(new FileReader(temp));
-      BufferedWriter inputWriter = new BufferedWriter(new FileWriter(input, false));
-
-      while ((line = tempReader.readLine()) != null) {
-        String[] field = line.split("\\*");
-        if (field[0].equals(idupdate) && field.length >= 4) {
-            found = true;
-            System.out.print("Enter a new status: ");
-            String newStatus = sc.nextLine();
-            line = field[0] + "*" + field[1] + "*" + field[2] + "*" + newStatus;
-            System.out.println("Updating record: " + line);
+        if (!inputs.exists()) {
+            System.out.println("Student file does not exist");
+            return;
         }
-          inputWriter.write(line + "\n");
-      }
 
-      tempReader.close();
-      inputWriter.close();
+        BufferedReader reader = new BufferedReader(new FileReader(inputs));
+        BufferedWriter tempWriter = new BufferedWriter(new FileWriter(tempy));
 
-      if (!found) {
-        System.out.println("Student ID not found or invalid format");
-      }
-    
-   }
- 
-   public static void search() throws IOException(){
-     
-   }
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            tempWriter.write(line + "\n");
+        }
+
+        reader.close();
+        tempWriter.close();
+
+        BufferedReader tempReader = new BufferedReader(new FileReader(tempy));
+        BufferedWriter inputWriter = new BufferedWriter(new FileWriter(inputs, false));
+
+        while ((line = tempReader.readLine()) != null) {
+            String[] field = line.split("\\*");
+            if (field[0].equals(idupdate) && field.length >= 4) {
+                found = true;
+                System.out.print("Enter a new status: ");
+                String newStatus = sc.nextLine();
+                line = field[0] + "*" + field[1] + "*" + field[2] + "*" + newStatus;
+                System.out.println("Updating record: " + line);
+            }
+            inputWriter.write(line + "\n");
+        }
+
+        tempReader.close();
+        inputWriter.close();
+
+        if (!found) {
+            System.out.println("Student ID not found or invalid format");
+        }
+    }
+
+    // for search
+    public static void searchByID(String idToSearch) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("Students.txt"));
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("\\*");
+            if (parts.length == 4 && parts[0].equals(idToSearch)) {
+                found = true;
+                System.out.println("ID: " + parts[0]);
+                System.out.println("Name: " + parts[1]);
+                System.out.println("Course: " + parts[2]);
+                System.out.println("Status: " + parts[3]);
+
+                break; 
+            }
+        }
+
+        reader.close();
+
+        if (!found) {
+            System.out.println("Student with ID " + idToSearch + " not found.");
+        }
+    }
+
+    public static void searchByName(String nameToSearch) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("Students.txt"));
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("\\*");
+            if (parts.length == 4 && parts[1].equalsIgnoreCase(nameToSearch)) {
+                              found = true;
+                System.out.println("ID: " + parts[0]);
+                System.out.println("Name: " + parts[1]);
+                System.out.println("Course: " + parts[2]);
+                System.out.println("Status: " + parts[3]);
+             
+            }
+        }
+
+        reader.close();
+
+        if (!found) {
+            System.out.println("Student with name " + nameToSearch + " not found.");
+        }
+    }
+
+    public static void searchByCourse(String courseToSearch) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("Students.txt"));
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("\\*");
+            if (parts.length == 4 && parts[2].equalsIgnoreCase(courseToSearch)) {
+                found = true;
+                System.out.println("ID: " + parts[0]);
+                System.out.println("Name: " + parts[1]);
+                System.out.println("Course: " + parts[2]);
+                System.out.println("Status: " + parts[3]);
+              
+            }
+        }
+
+        reader.close();
+
+        if (!found) {
+            System.out.println("No students found in course " + courseToSearch);
+        }
+    }
+
+    public static void searchByStatus(String statusToSearch) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("Students.txt"));
+        String line;
+        boolean found = false;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("\\*");
+            if (parts.length == 4 && parts[3].equalsIgnoreCase(statusToSearch)) {
+                found = true;
+                System.out.println("ID: " + parts[0]);
+                System.out.println("Name: " + parts[1]);
+                System.out.println("Course: " + parts[2]);
+                System.out.println("Status: " + parts[3]);
+                
+            }
+        }
+
+        reader.close();
+
+        if (!found) {
+            System.out.println("No students found with status " + statusToSearch);
+        }
+    }
+
+   public static void searchByAll() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader("Students.txt"));
+    String line;
+    boolean found = false;
+
+    while ((line = reader.readLine()) != null) {
+        String[] parts = line.split("\\*");
+        if (parts.length == 4) {
+            found = true;
+            System.out.println("ID: " + parts[0]);
+            System.out.println("Name: " + parts[1]);
+            System.out.println("Course: " + parts[2]);
+            System.out.println("Status: " + parts[3]);
+            System.out.println();
+        }
+    }
+
+    reader.close();
+
+    if (!found) {
+        System.out.println("No students found in the file.");
+    }
+  }
+
+    public static void Search() throws IOException {
+        boolean ikot = true;
+
+        while (ikot) {
+            System.out.println("Choose a search category:");
+            System.out.println("1. Search by All");
+            System.out.println("2. Search by Name");
+            System.out.println("3. Search by ID");
+            System.out.println("4. Search by Course");
+            System.out.println("5. Search by Status");
+            System.out.println("6. Exit");
+            System.out.print("Choose an option: ");
+            int choice = Integer.parseInt(sc.nextLine()); 
+
+            if (choice == 1) {
+               searchByAll();
+            } else if (choice == 2) {
+                System.out.print("Enter student Name to search: ");
+                String nameToSearch = sc.nextLine();
+                searchByName(nameToSearch);
+            } else if (choice == 3) {
+                System.out.print("Enter student ID to search: ");
+                String idToSearch = sc.nextLine();
+                searchByID(idToSearch);
+            } else if (choice == 4) {
+                System.out.print("Enter course to search: ");
+                String courseToSearch = sc.nextLine();
+                searchByCourse(courseToSearch);
+            } else if (choice == 5) {
+                System.out.print("Enter status to search: ");
+                String statusToSearch = sc.nextLine();
+                searchByStatus(statusToSearch);
+            } else if (choice == 6) {
+                ikot = false;
+                System.out.println("Exiting the program.");
+            } else {
+                System.out.println("Invalid option. Please choose a valid option.");
+            }
+        }
+    }
 
     public static void main(String[] args) throws IOException {
-        add();
-        Students();
-        archive();
+        boolean running = true;
+        String choice;
+
+        while (running) {
+            System.out.println("Add[1]");
+            System.out.println("Update[2]");
+            System.out.println("Archive[3]");
+            System.out.println("Search[4]");
+            System.out.println("Exit[5]");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextLine();
+
+            if (choice.equals("1")) {
+                add();
+            } else if (choice.equals("2")) {
+                update();
+            } else if (choice.equals("3")) {
+                archive();
+            } else if (choice.equals("4")) {
+                Search();
+            } else if (choice.equals("5")) {
+                running = false;
+                System.out.println("Exiting the program.");
+            } else {
+                System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+
+        sc.close(); 
     }
 }
+
