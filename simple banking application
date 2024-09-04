@@ -1,0 +1,68 @@
+main class:
+
+package Mainbank;
+import java.util.Scanner;
+public class mainbank {
+	public static Scanner sc = new Scanner(System.in);
+
+    public static void main(String []args) {
+		
+    	
+    	subbank sb = new subbank();
+    			
+	}
+}
+
+subclass:
+
+package Mainbank;
+import java.util.Scanner;
+public class subbank {
+	public static Scanner sc = new Scanner(System.in);
+
+	String Account_name,Account_num;
+	int ini_deposit,deposit,withdraw;
+	int balance = ini_deposit + deposit;
+	
+	subbank(String Account_name,String Account_num,int ini_deposit,int deposit,int balance,int withdraw){
+		
+		this.Account_name = Account_name;
+		this.Account_num = Account_num;
+		this.ini_deposit =  ini_deposit;
+		this.deposit = deposit;
+		this.balance = balance;
+		this.withdraw = withdraw;
+		
+	}
+	
+    void subbank() {
+		
+	}
+	
+	void create_account() {
+		System.out.print("Enter Account Name: ");
+		Account_name = sc.nextLine();
+		
+		System.out.print("Enter an account number: ");
+		Account_num = sc.nextLine();
+		
+		System.out.print("Enter your initial deposit: ");
+		ini_deposit = sc.nextInt();
+	}
+	
+	void deposit() {
+		System.out.print("Enter your amount to deposit: ");
+		deposit = sc.nextInt();
+		
+		balance = balance + deposit;
+		
+	}
+	
+	void withdraw() {
+		System.out.print("Enter your amount to withdraw: ");
+		withdraw = sc.nextInt();
+		
+		balance = balance - withdraw;
+		
+	}
+	
