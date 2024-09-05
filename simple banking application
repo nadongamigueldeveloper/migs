@@ -9,9 +9,40 @@ public class mainbank {
 		
     	
     	subbank sb = new subbank();
+    	
+    	while(true) {
+    		
+        	
+        	System.out.println("1 - Create Account");
+        	System.out.println("2 - Deposit");
+        	System.out.println("3 - Withdraw");
+        	System.out.println("4 - Get Balance");
+        	System.out.println("5 - Display Account Details");
+        	System.out.println("6 - Exit");
+        	
+        	System.out.print("Enter an number: ");
+        	String ch = sc.nextLine();
+        	
+        	
+        	if(ch.equals("1")) {
+        		sb.create_account();
+        	}else if(ch.equals("2")){
+        		sb.deposit();
+        	}else if(ch.equals("3")) {
+        		sb.withdraw();
+        	}else if(ch.equals("4")) {
+        		sb.getbalance();
+        	}else if(ch.equals("5")) {
+        		sb.display_account();
+        	}else if(ch.equals("6")) {
+        		System.exit(0);
+        	}
+    	}
     			
+    
 	}
 }
+
 
 subclass:
 
@@ -24,16 +55,7 @@ public class subbank {
 	int ini_deposit,deposit,withdraw;
 	int balance = ini_deposit + deposit;
 	
-	subbank(String Account_name,String Account_num,int ini_deposit,int deposit,int balance,int withdraw){
-		
-		this.Account_name = Account_name;
-		this.Account_num = Account_num;
-		this.ini_deposit =  ini_deposit;
-		this.deposit = deposit;
-		this.balance = balance;
-		this.withdraw = withdraw;
-		
-	}
+	
 	
     void subbank() {
 		
@@ -66,3 +88,16 @@ public class subbank {
 		
 	}
 	
+	void getbalance() {
+		int balance = ini_deposit + deposit;
+		System.out.println("Your balance is " + balance);
+	}
+	
+	void display_account() {
+		System.out.println("Account Name: " + Account_name);
+		System.out.println("Account Number: " + Account_num);
+		
+	}
+	
+}
+
