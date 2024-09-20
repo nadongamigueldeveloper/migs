@@ -51,12 +51,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class sublib {
 
-	private String book;
-	private String book1 = "java programming";
-	private String book2 = "ibong adarna";
-	private String book3 = "noli me tangere";
-	private int ch,b;
-	private String borrow,borrow2;
+    
+	private String book ;
+	
+	private int ch;
+	private String borrow,b;
 	
 	public sublib(String book,int ch){
 		this.book = book;
@@ -67,9 +66,9 @@ public class sublib {
 	void viewAvailableBooks() {
 		ArrayList <String> book = new ArrayList<String> ();
 		
-		book.add(book1);
-		book.add(book2);
-		book.add(book3);
+		book.add("java programming");
+		book.add("ibong adarna");
+		book.add("noli me tangere");
 
 		for(int x = 0;x < book.size();x++) {
 			System.out.println("[" + (x+1) + "]" + book.get(x));
@@ -81,12 +80,12 @@ public class sublib {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Enter the book you want: ");
-	     b = sc.nextInt();
+	    borrow = sc.nextLine().toLowerCase();
 	    
-	    borrow = book.get(b-1);
 	    
-	    book.set(b-1, "");
-	
+	    
+	   
+	    
 	    System.out.println("You have now the book " + borrow);
 	   
 	}
@@ -94,7 +93,7 @@ public class sublib {
 	void returnbook() {
 		ArrayList <String> book = new ArrayList<String> ();
 		
-		book.set(b-1, borrow);
+		
 		
 		for(int x = 0;x < book.size();x++) {
 			System.out.println("[" + (x+1) + "]" + book.get(x));
@@ -104,4 +103,5 @@ public class sublib {
 	
 
 }
+
 
