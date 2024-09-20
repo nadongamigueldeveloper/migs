@@ -1,0 +1,107 @@
+main class:
+
+package librarymain;
+import java.util.Scanner;
+public class lmain {
+
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		sublib sl = new sublib("book",8);
+		
+		
+		while(true) {
+			System.out.println("[1]View Available Books");
+			System.out.println("[2]Borrow Available Books");
+			System.out.println("[3]Return Available Books");
+			
+	
+			
+			System.out.print("Enter your choice: ");
+			int ch = sc.nextInt();
+			
+			if(ch == 1) {
+				sl.viewAvailableBooks();
+			}else if(ch == 2) {
+				sl.borrowbook();
+			}else if(ch == 3) {
+				sl.returnbook();
+			}
+			
+			System.out.print("Do you want continue[y/n]: ");
+			String y = sc.nextLine().toLowerCase();
+			
+			if(y.equals("y")) {
+				System.out.println("");
+			}else {
+				System.exit(0);
+			}
+		}
+
+
+	}
+
+}
+
+
+subclass: 
+package librarymain;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+public class sublib {
+
+	private String book;
+	private String book1 = "java programming";
+	private String book2 = "ibong adarna";
+	private String book3 = "noli me tangere";
+	private int ch,b;
+	private String borrow,borrow2;
+	
+	public sublib(String book,int ch){
+		this.book = book;
+		this.ch = ch;
+	}
+	
+
+	void viewAvailableBooks() {
+		ArrayList <String> book = new ArrayList<String> ();
+		
+		book.add(book1);
+		book.add(book2);
+		book.add(book3);
+
+		for(int x = 0;x < book.size();x++) {
+			System.out.println("[" + (x+1) + "]" + book.get(x));
+		}
+	}
+	
+	void borrowbook() {
+		ArrayList <String> book = new ArrayList<String> ();
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Enter the book you want: ");
+	     b = sc.nextInt();
+	    
+	    borrow = book.get(b-1);
+	    
+	    book.set(b-1, "");
+	
+	    System.out.println("You have now the book " + borrow);
+	   
+	}
+	
+	void returnbook() {
+		ArrayList <String> book = new ArrayList<String> ();
+		
+		book.set(b-1, borrow);
+		
+		for(int x = 0;x < book.size();x++) {
+			System.out.println("[" + (x+1) + "]" + book.get(x));
+		}
+	}
+	
+	
+
+}
+
