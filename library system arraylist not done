@@ -9,39 +9,16 @@ public class lmain {
 		Scanner sc = new Scanner(System.in);
 		sublib sl = new sublib("book",8);
 		
-		
-		while(true) {
-			System.out.println("[1]View Available Books");
-			System.out.println("[2]Borrow Available Books");
-			System.out.println("[3]Return Available Books");
+
+			sl.viewAvailableBooks();
+			
+			sl.borrowbook();
 			
 	
-			
-			System.out.print("Enter your choice: ");
-			int ch = sc.nextInt();
-			
-			if(ch == 1) {
-				sl.viewAvailableBooks();
-			}else if(ch == 2) {
-				sl.borrowbook();
-			}else if(ch == 3) {
-				sl.returnbook();
-			}
-			
-			System.out.print("Do you want continue[y/n]: ");
-			String y = sc.nextLine().toLowerCase();
-			
-			if(y.equals("y")) {
-				System.out.println("");
-			}else {
-				System.exit(0);
-			}
-		}
-
-
 	}
 
 }
+
 
 
 subclass: 
@@ -54,7 +31,7 @@ public class sublib {
     
 	private String book ;
 	
-	private int ch;
+	private int ch, B;
 	private String borrow,b;
 	
 	public sublib(String book,int ch){
@@ -66,9 +43,9 @@ public class sublib {
 	void viewAvailableBooks() {
 		ArrayList <String> book = new ArrayList<String> ();
 		
-		book.add("java programming");
-		book.add("ibong adarna");
-		book.add("noli me tangere");
+		book.add("java programming");// 0
+		book.add("ibong adarna");// 1
+		book.add("noli me tangere");// 2
 
 		for(int x = 0;x < book.size();x++) {
 			System.out.println("[" + (x+1) + "]" + book.get(x));
@@ -82,17 +59,12 @@ public class sublib {
 		System.out.print("Enter the book you want: ");
 	    borrow = sc.nextLine().toLowerCase();
 	    
-	    
-	    
-	   
-	    
 	    System.out.println("You have now the book " + borrow);
 	   
 	}
 	
 	void returnbook() {
 		ArrayList <String> book = new ArrayList<String> ();
-		
 		
 		
 		for(int x = 0;x < book.size();x++) {
@@ -103,5 +75,3 @@ public class sublib {
 	
 
 }
-
-
