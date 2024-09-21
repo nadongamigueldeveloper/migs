@@ -1,0 +1,229 @@
+main:
+
+//main
+package javaapplication8;
+
+public class JavaApplication8 {
+
+    public static void main(String[] args) {
+        subApp8 sa = new subApp8();
+        
+        sa.Start();
+        
+        
+        
+    }
+    
+}
+
+atm class:
+
+// atm class
+package javaapplication8;
+import java.util.*;
+ class subApp8 {
+    
+    private String userpin,pin1,pin2,pin3;
+    private int much,m,mu;
+    private String choice,ch,c;
+    public Scanner sc = new Scanner(System.in);
+    public accclass ac = new accclass();
+    
+    subApp8(){
+         pin1 = "2023100449";
+         pin2 = "2023100339";
+         pin3 = "2023100556";
+    }
+        
+    
+    void Start(){
+        
+        System.out.print("Enter your pin: ");
+        userpin = sc.nextLine();
+        
+        if(userpin.equals(pin1)){
+            displayMenu();
+            processTransaction();
+        }else if(userpin.equals(pin2)){
+            displayMenu();
+            ProcessTransaction();
+        }else if(userpin.equals(pin3)){
+            displayMenu();
+            Process_Transaction();
+        }
+    }
+    
+    void displayMenu(){
+        System.out.println("[1]Withdraw");
+        System.out.println("[2]Deposit");
+        System.out.println("[3]Checkbalance");
+        System.out.println("[4]Exit");
+    }
+    
+    void processTransaction(){//01
+        accclass ac = new accclass();
+        System.out.print("Enter your choice: ");
+        choice = sc.nextLine();
+        
+        switch(choice){
+            case "1":
+                System.out.print("Enter an amount to withdraw: ");
+                much = sc.nextInt();
+                ac.withdraw(much);
+                System.out.println("Your balance is " + ac.checkbalance());
+                break;
+            case "2":
+                System.out.print("Enter an amount to deposit: ");
+                much = sc.nextInt();
+                ac.deposit(much);
+                System.out.println("Your balance is " + ac.checkbalance());
+                break;
+            case "3":
+                System.out.println("Your balance is " + ac.checkbalance());
+                break;
+            case "4":
+                break;
+            default:
+                System.out.println("Invalid Input");
+        }
+    }
+    
+    void ProcessTransaction(){//02
+        acc_class02 ac2 = new acc_class02();
+        System.out.print("Enter your choice: ");
+        ch = sc.nextLine();
+        
+        switch(ch){
+            case "1":
+                System.out.print("Enter an amount to withdraw: ");
+                m = sc.nextInt();
+                ac2.withdraw(m);
+                System.out.println("Your balance is " + ac2.checkbalance());
+                break;
+            case "2":
+                System.out.print("Enter an amount to deposit: ");
+                m = sc.nextInt();
+                ac2.deposit(m);
+                System.out.println("Your balance is " + ac2.checkbalance());
+                break;
+            case "3":
+                System.out.println("Your balance is " + ac2.checkbalance());
+                break;
+            case "4":
+                break;
+            default:
+                System.out.println("Invalid Input");
+        }
+    }
+    
+    void Process_Transaction(){//03
+        acc03 ac3 = new acc03();
+        System.out.print("Enter your choice: ");
+        c = sc.nextLine();
+        
+        switch(c){
+            case "1":
+                System.out.print("Enter an amount to withdraw: ");
+                mu = sc.nextInt();
+                ac3.withdraw(mu);
+                System.out.println("Your balance is " + ac3.checkbalance());
+                break;
+            case "2":
+                System.out.print("Enter an amount to deposit: ");
+                mu = sc.nextInt();
+                ac3.deposit(mu);
+                System.out.println("Your balance is " + ac3.checkbalance());
+                break;
+            case "3":
+                System.out.println("Your balance is " + ac3.checkbalance());
+                break;
+            case "4":
+                break;
+            default:
+                System.out.println("Invalid Input");
+        }
+    }
+
+}
+
+user1:
+
+//acc class
+package javaapplication8;
+
+ class accclass {
+    private double balance;
+    
+    accclass(){
+        balance = 10000;
+    }
+    
+    public double withdraw(double amount){
+        balance = balance - amount;
+        return balance; 
+    }
+    
+    public double deposit(double amount){
+        balance = balance + amount;
+        return balance;
+    }
+    
+    public double checkbalance(){
+        return balance;
+    }
+ 
+}
+user2:
+
+
+package javaapplication8;
+
+public class acc_class02 {
+    private double balance2;
+    
+    acc_class02(){
+        balance2 = 5000;
+    }
+    
+    public double withdraw(double amount){
+        balance2 = balance2 - amount;
+        return balance2; 
+    }
+    
+    public double deposit(double amount){
+        balance2 = balance2 + amount;
+        return balance2;
+    }
+    
+    public double checkbalance(){
+        return balance2;
+    }
+}
+
+user3:
+
+package javaapplication8;
+
+public class acc03 {
+    private double balance3;
+    
+    acc03(){
+        balance3 = 3000;
+    }
+    
+    public double withdraw(double amount){
+        balance3 = balance3 - amount;
+        return balance3; 
+    }
+    
+    public double deposit(double amount){
+        balance3 = balance3 + amount;
+        return balance3;
+    }
+    
+    public double checkbalance(){
+        return balance3;
+    }
+}
+
+
