@@ -1,0 +1,120 @@
+Main: 
+
+
+package javaapplication9;
+
+import java.util.Scanner;
+
+public class StudentHealthRecordSystem {
+    public static boolean tuloy = true;
+    
+    public static void main(String []migs){
+        Scanner sc = new Scanner(System.in);
+        HealthRecord hr = new HealthRecord();
+        
+        
+        while(tuloy){
+            System.out.print("Enter student's name                   : ");
+            String student = sc.nextLine();
+            hr.setStudentName(student);
+        
+            while(tuloy){
+                System.out.print("Enter student's blood type(O, A, B, AB): ");
+                String blood = sc.nextLine().toUpperCase();
+                
+                if(blood.equals("AB") || blood.equals("O") || blood.equals("B") || blood.equals("A")){
+                    hr.setBloddType(blood);
+                    tuloy = false;
+                }else{
+                      System.out.println("Invalid Input");
+                }
+            }
+            
+            tuloy = true;
+            while(tuloy){
+                System.out.print("Enter student's Rh factor(+ or -)      : ");
+                String factor = sc.nextLine();
+                if(factor.equals("+") || factor.equals("-")){
+                    hr.setrhFactor(factor);
+                    tuloy = false;
+                }else{
+                    System.out.println("Invalid Input");
+                }
+            }
+            
+            hr.displayInfo();
+            
+            System.out.print("Do you want to enter another student's health record(Yes/No): ");
+            String ask_user = sc.nextLine().toLowerCase();
+            
+            switch(ask_user){
+                case "yes":
+                    tuloy = true;
+                    System.out.println();
+                    break;
+                case "no":
+                    System.out.println("Thanks for using the program");
+                    tuloy = false;
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+            }
+                
+        }
+      
+    }
+}
+
+Sub:
+
+package javaapplication9;
+
+public class HealthRecord {
+    
+    private String studentName,bloodType,rhfactor;
+    
+    HealthRecord(){
+        
+    }
+    
+    public HealthRecord(String studentName, String bloodType, String rhfactor ){
+        this.studentName = studentName;
+        this.bloodType = bloodType;
+        this.rhfactor = rhfactor;
+    }
+    
+    public void setStudentName(String studentName){
+        this.studentName = studentName;
+    }
+    
+    public String getStudentname(){
+        return studentName;
+    }
+    
+    public void setBloddType(String bloodType){
+        
+            this.bloodType = bloodType;
+  
+          
+        
+    }
+    public String getBloodType(){
+        return bloodType;
+    }
+    
+    public void setrhFactor(String rhfactor){
+        this.rhfactor = rhfactor;
+    }
+    
+   
+    public String getrhfactor(){
+        return rhfactor;
+    }
+    
+    public void displayInfo(){
+        System.out.println();
+        System.out.println("Student name: " + getStudentname());
+        System.out.println("Bloodtype:    " + getBloodType());
+        System.out.println("Rh Factor:    " + getrhfactor());
+    }
+}
